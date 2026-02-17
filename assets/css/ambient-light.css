@@ -1,0 +1,202 @@
+/* --- GLOBAL WAVE LIGHT LAYER (Continuous Flow) --- */
+
+/* 1. Parent Container (Fixed behind everything) */
+#global-ambient-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* Behind content content (usually z-1 or higher) */
+    pointer-events: none;
+    overflow: hidden;
+
+    /* VISIBILITY MASKING: Only visible via clip-path logic controlled by JS or specific section transparency */
+    /* By default, we let it be visible, but we rely on sections having backgrounds to cover it, 
+       EXCEPT the ones we want (3,4,6,7) which will need transparent backgrounds. 
+       
+       However, the user request asks for CLIP/MASK logic specifically.
+       Since simple CSS cannot complexly mask non-adjacent sections easily without SVG, 
+       we will use a "Reveal Class" approach on the body or a mask-image approach if feasible.
+       
+       Better Approach for "Seamless": 
+       The light is ALWAYS there. 
+       Sections that WANT it will have `background-color: transparent`.
+       Sections that DON'T want it will have `background-color: var(--color-base-obsidian)`.
+       
+       We need to ensure z-indexing matches this.
+    */
+    opacity: 0;
+    /* Starts hidden, revealed by JS */
+    transition: opacity 1.5s ease-in-out;
+}
+
+#global-ambient-light.active {
+    opacity: 1;
+}
+
+/* 2. The Wave Object (Soft, Organic, Moving) */
+.light-wave {
+    position: absolute;
+    /* Massive scale to feel abstract */
+    width: 150vw;
+    height: 120vh;
+    top: -20%;
+    left: -20%;
+
+    /* The Color of Life (#0D1F16) */
+    /* Radial gradient with multiple stops for "rippled" look */
+    background: radial-gradient(ellipse at center,
+            rgba(13, 31, 22, 0.8) 0%,
+            rgba(13, 31, 22, 0.4) 30%,
+            rgba(13, 31, 22, 0.1) 60%,
+            rgba(0, 0, 0, 0) 80%);
+
+    /* Extreme Blur */
+    filter: blur(100px);
+
+    /* ANIMATIONS */
+    /* 1. Drift (Internal distortion) */
+    animation: waveDrift 16s infinite alternate ease-in-out, wavePulse 24s infinite alternate ease-in-out;
+
+    /* 2. Scroll Parallax will be handled by simple GSAP y-transforms on this element */
+    will-change: transform;
+}
+
+/* 3. Wave Internal Animations */
+@keyframes waveDrift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(5%, 5%) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-5%, 10%) scale(0.95);
+    }
+
+    100% {
+        transform: translate(2%, 0) scale(1.05);
+    }
+}
+
+@keyframes wavePulse {
+    0% {
+        opacity: 0.7;
+        border-radius: 40%;
+    }
+
+    100% {
+        opacity: 0.9;
+        border-radius: 50%;
+    }
+}
+
+/* 4. SECTION VISIBILITY CONTROL */
+
+/* Default: Sections have solid background (Hiding the fixed wave) */
+main>section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-base-obsidian);
+    /* Covers the wave */
+    border: none;
+}
+
+/* Target Sections: Transparent Background (Revealing the wave) */
+#location,
+/* Section 3 */
+#master-plan,
+/* Section 4 */
+#participation,
+/* Section 6 */
+#team
+
+/* Section 7 */
+    {
+    background-color: transparent !important;
+    /* SOFT GRADIENT MASK for Seamless Transitions
+       This fades the content container so the fixed background light 
+       appears to fade in/out rather than cutting hard. 
+       
+       Logic: 
+       - Top 15%: Fade IN (Transparent -> Opaque)
+       - Middle 70%: Opaque
+       - Bottom 15%: Fade OUT (Opaque -> Transparent)
+       
+       Since these sections are transparent windows to the light, 
+       we actually need to GRADIENT THE NEIGHBORING SECTIONS OR 
+       use a pseudo-element overlay that fades to black at the edges.
+       
+       BETTER STRATEGY:
+       Instead of masking the revealed sections (which might cut content),
+       we leave them transparent but ensure the sections ABOVE and BELOW
+       have a gradient overlay that "bleeds" into them slightly? 
+       No, simpler:
+       
+       We add a pseudo-element GRADIENT to these sections that mimics
+       the black background fading to transparent.
+    */
+    position: relative;
+}
+
+/* PSEUDO-ELEMENT FADES (Soft cut-off fix) */
+
+/* 1. TOP FADES (Fade IN from Dark) */
+/* Applied to:
+   - #location (Entry from Manifesto)
+   - #master-plan (Entry from Carousel)
+   - #participation (Entry from Progress)
+*/
+#location::before,
+#master-plan::before,
+#participation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    z-index: 0;
+    /* Gradient: Black (Solid) -> Transparent */
+    background: linear-gradient(to bottom, var(--color-base-obsidian) 0%, rgba(8, 8, 8, 0) 100%);
+    pointer-events: none;
+}
+
+/* 2. BOTTOM FADES (Fade OUT to Dark) */
+/* Applied to:
+   - #location (Exit to Carousel)
+   - #master-plan (Exit to Progress)
+   - #team (Exit to Footer/Dossier)
+*/
+#location::after,
+#master-plan::after,
+#team::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    z-index: 0;
+    /* Gradient: Transparent -> Black (Solid) */
+    background: linear-gradient(to bottom, rgba(8, 8, 8, 0) 0%, var(--color-base-obsidian) 100%);
+    pointer-events: none;
+}
+
+/* CONTINUITY NOTES:
+   - #location (3) -> Dark Carousel -> #master-plan (4)
+     Result: Light fades out at bottom of 3, disappears in Carousel, fades in at top of 4.
+
+   - #participation (6) -> #team (7)
+     Result: NO Fade between them (Continuous). 
+     Fade IN at top of 6.
+     Fade OUT at bottom of 7.
+*/
+
+/* Ensure seamless transitions (no hard lines) */
+/* We might need a gradient mask on the bottom of sections 2 and 5 to smooth the entry/exit if needed,
+   but "transparent" is the cleanest "window" to the fixed background. */

@@ -1,0 +1,2578 @@
+/* ==========================================================================
+   ILAKECH - RESPONSIVE SYSTEM
+   Premium Sanctuary Landing - Consistent Visual Hierarchy Across All Devices
+   
+   Breakpoints:
+   - ≥1440px: Desktop Grande (Monitor 24"+)
+   - 1024-1439px: Desktop Estándar (Laptop)
+   - 768-1023px: Tablet
+   - ≤767px: Mobile
+   ========================================================================== */
+
+/* ==========================================================================
+   1. FLUID TYPOGRAPHY SYSTEM
+   NOTE: These rules are INTENTIONALLY outside media queries.
+   They define the base fluid scale using clamp(), which adapts continuously
+   across all viewport widths. Breakpoint-specific overrides in sections 3-7
+   below take priority via higher specificity (e.g. #hero h1).
+   ========================================================================== */
+
+:root {
+    /* Fluid Typography - Controlled with clamp() */
+    --fluid-h1: clamp(2rem, 4vw + 1rem, 4.5rem);
+    --fluid-h2: clamp(1.75rem, 3vw + 0.5rem, 3.5rem);
+    --fluid-h3: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+    --fluid-body: clamp(0.938rem, 0.5vw + 0.85rem, 1.125rem);
+    --fluid-small: clamp(0.813rem, 0.3vw + 0.75rem, 0.938rem);
+
+    /* Max-width for readable text blocks */
+    --text-max-width: 65ch;
+    --text-max-width-narrow: 50ch;
+}
+
+/* Apply fluid typography */
+h1,
+.h1-fluid {
+    font-size: var(--fluid-h1);
+    max-width: 20ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2,
+.h2-fluid {
+    font-size: var(--fluid-h2);
+}
+
+h3,
+.h3-fluid {
+    font-size: var(--fluid-h3);
+}
+
+body,
+p,
+.body-fluid {
+    font-size: var(--fluid-body);
+}
+
+/* Controlled paragraph widths */
+.container p,
+.manifesto-content p,
+.plan-content p,
+.timeline-text p {
+    max-width: var(--text-max-width);
+}
+
+/* Mobile-only line breaks (hidden on desktop, shown on mobile) */
+.m-br {
+    display: none;
+}
+
+/* ==========================================================================
+   2. BASE RESPONSIVE CONTAINERS
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: var(--container-width, 1200px);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+/* Section padding fluid */
+.section-padding {
+    padding-top: clamp(4rem, 8vw, 8rem);
+    padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+/* ==========================================================================
+   3. DESKTOP GRANDE (≥1440px) - Monitor 24"+
+   Maximum breathing room, expansive compositions
+   ========================================================================== */
+
+@media (min-width: 1440px) {
+
+    /* Expanded containers */
+    .container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+
+    /* Hero Section - More vertical breathing room */
+    #hero .container {
+        max-width: 900px;
+    }
+
+    #hero h1 {
+        font-size: 4rem;
+        letter-spacing: 0.02em;
+    }
+
+    #hero p {
+        font-size: 1.3rem;
+        max-width: 600px;
+    }
+
+    /* Manifesto - Generous spacing */
+    #manifesto .manifesto-content {
+        max-width: 750px;
+    }
+
+    #manifesto h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    #manifesto .manifesto-content p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    .manifesto-img {
+        width: 85%;
+        height: 80%;
+        opacity: 0.35;
+    }
+
+    /* Location Section - Balanced pillars */
+    #location h2 {
+        font-size: 2.8rem;
+    }
+
+    .parchment-img {
+        width: 75vw;
+        max-width: 950px;
+    }
+
+    .pillar-box {
+        max-width: 280px;
+        padding: 1.25rem;
+    }
+
+    .pillar-box h4 {
+        font-size: 1.15rem;
+    }
+
+    .pillar-box p {
+        font-size: 0.95rem;
+    }
+
+    /* Pillar positions - Desktop Grande */
+    .pillar-1 {
+        top: 40%;
+        left: 20%;
+        transform: translateX(-100%) translateZ(100px);
+    }
+
+    .pillar-1:hover {
+        transform: translateX(-100%) translateZ(120px) scale(1.06);
+    }
+
+    .pillar-2 {
+        top: 10%;
+        right: 17%;
+        transform: translateX(100%) translateZ(100px);
+    }
+
+    .pillar-2:hover {
+        transform: translateX(100%) translateZ(120px) scale(1.06);
+    }
+
+    .pillar-3 {
+        bottom: -8%;
+        transform: translateX(-50%) translateZ(100px);
+    }
+
+    .pillar-3:hover {
+        transform: translateX(-50%) translateZ(120px) scale(1.06);
+    }
+
+    /* Master Plan - Luxurious grid */
+    .master-grid {
+        grid-template-columns: 1.8fr 1fr !important;
+        gap: 5rem !important;
+        align-items: center;
+    }
+
+    .plan-content {
+        padding-left: 4rem;
+    }
+
+    .plan-content h2 {
+        font-size: 3.8rem;
+    }
+
+    .plan-content h2 span {
+        font-size: 2.8rem;
+    }
+
+    .master-visual-img {
+        transform: scale(1.1);
+    }
+
+    .badge-hectares {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    .badge-hectares span:first-child {
+        font-size: 4rem !important;
+    }
+
+    /* Timeline - Spacious layout */
+    .timeline-container {
+        max-width: 1100px;
+        height: 950px;
+    }
+
+    .timeline-block {
+        width: 400px;
+    }
+
+    .timeline-text h3 {
+        font-size: 1.4rem;
+    }
+
+    .timeline-text p {
+        font-size: 1rem;
+        max-width: 350px;
+    }
+
+    /* Participation Cards - Larger presence */
+    .card-scene {
+        height: 450px;
+    }
+
+    .face-front .card-icon {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Team Section */
+    .team-grid {
+        gap: 3rem;
+    }
+
+    #team h2 {
+        font-size: 2.8rem;
+        margin-bottom: 5rem;
+    }
+
+    /* CTA Section */
+    #dossier h2 {
+        font-size: 3.5rem;
+    }
+
+    #dossier p {
+        font-size: 1.3rem;
+    }
+}
+
+/* ==========================================================================
+   4. DESKTOP ESTÁNDAR (1024-1439px) - Laptop
+   Balanced, no text invasion on images
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+
+    /* --- STRUCTURE & SPACING --- */
+    .container {
+        max-width: 1000px;
+        /* Reduced specific maxWidth for tighter laptop Layout */
+        padding: 0 2rem;
+    }
+
+    .section-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    /* --- TYPOGRAPHY NORMALIZATION --- */
+    /* Hero H1: Dominant but not overwhelming */
+    #hero h1 {
+        font-size: 3rem;
+        max-width: 750px;
+        line-height: 1.1;
+    }
+
+    #hero p {
+        font-size: 1.1rem;
+        max-width: 580px;
+    }
+
+    /* Section H2: Uniform across all sections, smaller than H1 */
+    h2,
+    #manifesto h2,
+    #location h2,
+    .plan-content h2,
+    #progress h2,
+    #participation h2,
+    #team h2,
+    #dossier h2 {
+        font-size: 2.2rem !important;
+        /* Unified Section Title Size */
+        line-height: 1.2;
+        margin-bottom: 2rem;
+    }
+
+    /* Subtitles / H3 */
+    h3,
+    .text-amber {
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+    }
+
+    /* Body Text */
+    p,
+    .text-mist,
+    .manifesto-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* --- SECTION REFINEMENTS --- */
+
+    /* Manifesto */
+    #manifesto .manifesto-content {
+        max-width: 650px;
+        /* Slightly wider for better reading flow */
+    }
+
+    .manifesto-img {
+        width: 80%;
+        height: 70%;
+        opacity: 0.22;
+    }
+
+    /* Location */
+    #location {
+        height: auto;
+        min-height: 90vh;
+        /* Allow it to breathe */
+    }
+
+    .parchment-img {
+        width: 65vw;
+        /* Slightly smaller to prevent edge touching */
+        max-width: 750px;
+    }
+
+    .pillar-box {
+        max-width: 180px;
+        /* Tighter pillars */
+        padding: 1rem;
+    }
+
+    .pillar-box h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .pillar-box p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    /* Pillar Positioning (Optimized for Laptop) */
+    .pillar-1 {
+        top: 30%;
+        left: 12%;
+    }
+
+    .pillar-2 {
+        top: 15%;
+        right: 10%;
+    }
+
+    .pillar-3 {
+        bottom: -5%;
+    }
+
+    /* Master Plan */
+    .master-grid {
+        grid-template-columns: 1.2fr 1fr !important;
+        /* Visual balance */
+        gap: 2rem !important;
+        align-items: center;
+    }
+
+    /* Master Plan Title Adjustment */
+    .plan-content h2 {
+        font-size: 2.2rem !important;
+        /* Match global H2 */
+    }
+
+    .plan-content h2 span {
+        font-size: 1.8rem !important;
+        /* Sub-part of title */
+    }
+
+    .master-bg-wrapper {
+        height: 60vh;
+        /* Controlled height */
+    }
+
+    .master-bg-img {
+        object-fit: contain;
+    }
+
+    .badge-hectares {
+        width: 120px !important;
+        height: 120px !important;
+        right: 5% !important;
+        bottom: 5% !important;
+    }
+
+    .badge-hectares span:first-child {
+        font-size: 2.5rem !important;
+    }
+
+    /* Timeline */
+    .timeline-container {
+        max-width: 900px;
+        height: 800px;
+        /* Reduced vertical height */
+    }
+
+    .timeline-block {
+        width: 280px;
+        /* Compact blocks */
+    }
+
+    /* Participation */
+    .card-scene {
+        height: 340px;
+        /* Shorter cards */
+    }
+
+    .face-front .card-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Team */
+    .team-grid {
+        gap: 1.5rem;
+    }
+
+    .member-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* CTA */
+    #dossier h2 {
+        font-size: 2.5rem !important;
+        /* Slightly larger for final impact, but < H1 */
+    }
+}
+
+/* ==========================================================================
+   5. TABLET (768-1023px)
+   Stacking begins, visual hierarchy maintained
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 720px;
+        padding: 0 1.5rem;
+    }
+
+    .section-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    /* Hero */
+    #hero {
+        min-height: 85vh;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+        max-width: 600px;
+    }
+
+    #hero p {
+        font-size: 1.1rem;
+        max-width: 500px;
+    }
+
+    /* Manifesto */
+    #manifesto {
+        min-height: 80vh;
+    }
+
+    #manifesto .manifesto-content {
+        max-width: 550px;
+    }
+
+    #manifesto h2 {
+        font-size: 1.7rem;
+        margin-bottom: 1.25rem;
+    }
+
+    #manifesto .manifesto-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .manifesto-img {
+        width: 90%;
+        height: 55%;
+        opacity: 0.18;
+        object-position: center bottom;
+    }
+
+    /* Location - Stacked layout */
+    #location {
+        height: auto;
+        min-height: auto;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+    }
+
+    #location>div:first-child {
+        position: relative;
+        top: auto;
+    }
+
+    #location h2 {
+        font-size: 1.8rem;
+    }
+
+    .parchment-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .parchment-img {
+        width: 90vw;
+        max-width: 550px;
+    }
+
+    /* Tablet: pillars become vertical list below the map */
+    .pillars-overlay {
+        position: relative !important;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+        width: 100%;
+        max-width: 550px;
+    }
+
+    .pillar-box {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        text-align: center !important;
+        opacity: 1;
+        padding: 1rem;
+    }
+
+    .pillar-box h4 {
+        font-size: 1rem;
+    }
+
+    .pillar-box p {
+        font-size: 0.9rem;
+    }
+
+    /* Master Plan - Stacked */
+    .master-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+    }
+
+    .plan-visual {
+        order: 1;
+    }
+
+    .plan-content {
+        order: 2;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .plan-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .plan-content h2 span {
+        font-size: 1.8rem;
+    }
+
+    .plan-content>p {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 500px;
+    }
+
+    .master-visual-img {
+        transform: scale(1);
+        max-width: 100%;
+    }
+
+    .badge-hectares {
+        width: 130px !important;
+        height: 130px !important;
+        bottom: 8% !important;
+        right: 8% !important;
+    }
+
+    .badge-hectares span:first-child {
+        font-size: 2.5rem !important;
+    }
+
+    .accordion-stack {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Timeline - Vertical Layout for Tablet */
+    .timeline-container {
+        height: auto;
+        min-height: auto;
+        max-width: 600px;
+    }
+
+    /* Hide canvas line on mobile/tablet - use vertical stack instead */
+    #timelineCanvas,
+    .timeline-path-svg {
+        display: none;
+    }
+
+    .timeline-block {
+        position: relative;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        /* Reset block-center transform */
+        width: 100%;
+        margin-bottom: var(--space-l);
+    }
+
+    .timeline-content-packet {
+        flex-direction: row;
+        align-items: flex-start !important;
+        gap: var(--space-m);
+    }
+
+    .timeline-icon-box {
+        flex-shrink: 0;
+        width: clamp(70px, 15vw, 100px);
+        height: clamp(70px, 15vw, 100px);
+    }
+
+    .timeline-text {
+        text-align: left !important;
+    }
+
+    .timeline-text h3 {
+        font-size: var(--text-h4);
+    }
+
+    .timeline-text p {
+        font-size: var(--text-body);
+        max-width: 100%;
+    }
+
+    /* Participation - 2 columns then 1 */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .team-grid .card-scene:last-child {
+        grid-column: 1 / -1;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .card-scene {
+        height: 350px;
+    }
+
+    .face-front .card-icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    /* Team */
+    #team h2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* CTA */
+    #dossier h2 {
+        font-size: 2.2rem;
+    }
+
+    #dossier p {
+        font-size: 1.1rem;
+        max-width: 500px;
+    }
+}
+
+/* ==========================================================================
+   6. MOBILE (≤767px)
+   GOVERNED BY: mobile-design-contract.md
+   All values must comply with contract tokens. No ad-hoc sizes.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+
+    /* --- MOBILE DESIGN TOKENS (Contract v1.0) --- */
+    :root {
+        --mobile-text-h1: clamp(1.9rem, 6.2vw, 2.6rem);
+        --mobile-text-h2: clamp(1.7rem, 5.5vw, 2.2rem);
+        --mobile-text-body: clamp(0.9rem, 2.6vw, 1rem);
+        --mobile-text-small: clamp(0.85rem, 2.2vw, 0.95rem);
+        --mobile-pad-x: clamp(18px, 5vw, 24px);
+        --mobile-section-pad-y: clamp(60px, 12vw, 90px);
+        --mobile-gap-title: 1.2rem;
+        --mobile-gap-paragraph: 1rem;
+        --mobile-lh-heading: 1.25;
+        --mobile-lh-body: 1.65;
+    }
+
+    /* --- GLOBAL MOBILE OVERRIDES --- */
+    .container {
+        padding: 0 var(--mobile-pad-x);
+    }
+
+    .section-padding {
+        padding-top: var(--mobile-section-pad-y);
+        padding-bottom: var(--mobile-section-pad-y);
+    }
+
+    /* Unified Body Typography */
+    body,
+    p,
+    .body-fluid,
+    .text-mist {
+        font-size: var(--mobile-text-body);
+        line-height: var(--mobile-lh-body);
+    }
+
+    /* Unified Heading Typography */
+    h2,
+    .h2-fluid {
+        font-size: var(--mobile-text-h2) !important;
+        line-height: var(--mobile-lh-heading);
+        letter-spacing: 0.03em;
+    }
+
+    h3,
+    .h3-fluid {
+        font-size: var(--mobile-text-small);
+        line-height: var(--mobile-lh-heading);
+    }
+
+    /* Text width constraint */
+    .container p,
+    .manifesto-content p,
+    .plan-content p,
+    .timeline-text p {
+        max-width: 38ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Paragraph spacing */
+    .container p+p,
+    .manifesto-content p+p {
+        margin-top: var(--mobile-gap-paragraph);
+    }
+
+    /* Title → Content gap */
+    h2+p,
+    h2+div {
+        margin-top: var(--mobile-gap-title);
+    }
+
+    /* --- NEW MOBILE HEADER (Edge-to-Edge FORCED) --- */
+
+    /* 1. OUTER WRAPPER: Positioning only */
+    #header-wrap {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        z-index: 9999 !important;
+        /* Ensure on top */
+        padding: 0 !important;
+        margin: 0 !important;
+        pointer-events: none;
+        display: block !important;
+    }
+
+    /* 2. INNER BAR: The visible header */
+    #top-bar {
+        pointer-events: auto;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
+
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+
+        /* PADDING STRATEGY: 
+           Use padding to push elements to visual corners.
+           Top: Safe area + small gap
+           Sides: 1.25rem (20px)
+           Bottom: Small gap to keep it thin
+        */
+        padding-top: max(15px, env(safe-area-inset-top)) !important;
+        padding-bottom: 12px !important;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+
+        /* Reset Box Model */
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+
+        /* Default State: Invisible Background */
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+
+        /* Transition */
+        transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+
+        /* Visibility */
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #top-bar .logo-text {
+        font-size: 1rem !important;
+        margin: 0 !important;
+        /* Force visibility on hero */
+        color: #E2DBD3 !important;
+        /* Paper color */
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .menu-trigger {
+        /* Filter shadow for icon visibility */
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6)) !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        display: flex !important;
+    }
+
+    .menu-icon-svg {
+        width: 22px !important;
+        height: 22px !important;
+        color: #E2DBD3 !important;
+    }
+
+    /* 3. SCROLLED STATE */
+    #header-wrap.is-scrolled #top-bar {
+        /* Dark Background on scroll */
+        background: rgba(11, 12, 11, 0.9) !important;
+        /* Slightly darker */
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+
+        /* VITAL: Padding MUST match default exactly */
+        padding-top: max(15px, env(safe-area-inset-top)) !important;
+        padding-bottom: 12px !important;
+    }
+
+    /* Hero */
+    /* Hero */
+    #hero {
+        height: auto;
+        min-height: 100dvh;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+
+    /* 1. MATCH DESKTOP OPACITY (Requested Fix) */
+    /* Force exact desktop values: Opacity 0.6 + Gradient Overlay */
+    #hero .background-layer {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    #hero .background-layer img {
+        opacity: 0.6 !important;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Target the gradient overlay div (2nd child) */
+    #hero .background-layer>div {
+        background: linear-gradient(to bottom, transparent 50%, var(--color-base-obsidian) 100%) !important;
+        opacity: 1 !important;
+        position: absolute;
+        inset: 0;
+    }
+
+    #hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #hero h3 {
+        font-size: var(--mobile-text-small);
+        letter-spacing: 0.25em;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    #hero h1 {
+        font-size: var(--mobile-text-h1) !important;
+        max-width: 100%;
+        margin-bottom: var(--mobile-gap-title);
+        line-height: var(--mobile-lh-heading);
+        letter-spacing: 0.02em;
+    }
+
+    #hero p {
+        font-size: var(--mobile-text-body);
+        max-width: 38ch;
+        margin-bottom: 3rem;
+        line-height: var(--mobile-lh-body);
+        opacity: 0.9;
+    }
+
+    /* Generic Mobile Button (Base) */
+    .btn-primary {
+        padding: 1.1rem 2.2rem;
+        font-size: var(--mobile-text-small);
+        letter-spacing: 0.15em;
+    }
+
+    /* 2. WIDER CTA BUTTON (Requested Fix) */
+    #hero .cta-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #hero .btn-primary {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        /* Keep proportional padding from generic rule, but ensure centering */
+    }
+
+    /* Manifesto styles defined below in this media query */
+
+    /* Location */
+    #location {
+        height: auto;
+        min-height: auto;
+        padding-top: var(--mobile-section-pad-y);
+        padding-bottom: var(--mobile-section-pad-y);
+    }
+
+    #location>div:first-child {
+        position: relative;
+        top: auto;
+        margin-bottom: var(--mobile-gap-title);
+    }
+
+    #location h3 {
+        font-size: var(--mobile-text-small);
+    }
+
+    /* #location h2 — inherits global --mobile-text-h2 rule */
+
+    .parchment-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .parchment-img {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    /* Mobile pillars - stacked below map */
+    .pillars-overlay {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        padding: 0;
+        width: 100%;
+    }
+
+    .pillar-box {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+        opacity: 1;
+        padding: 1rem;
+    }
+
+    .pillar-box h4 {
+        font-size: var(--mobile-text-small);
+    }
+
+    .pillar-box p {
+        font-size: var(--mobile-text-small);
+    }
+
+    /* Carousel */
+    .carousel-item {
+        width: 250px;
+        height: 160px;
+    }
+
+    /* Master Plan */
+    #master-plan {
+        min-height: auto;
+    }
+
+    .master-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .plan-visual {
+        order: 1;
+    }
+
+    .plan-content {
+        order: 2;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .plan-content span:first-child {
+        border-left: none;
+        padding-left: 0;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .plan-content h2 {
+        /* Uses global --mobile-text-h2 */
+        text-align: center;
+    }
+
+    .plan-content h2 span {
+        font-size: calc(var(--mobile-text-h2) * 0.8);
+    }
+
+    .plan-content>p {
+        font-size: var(--mobile-text-body);
+        text-align: center;
+    }
+
+    .master-visual-img {
+        transform: scale(1);
+    }
+
+    .badge-hectares {
+        width: 100px !important;
+        height: 100px !important;
+        bottom: 5% !important;
+        right: 5% !important;
+    }
+
+    .badge-hectares span:first-child {
+        font-size: 2rem !important;
+    }
+
+    .badge-hectares span:last-child {
+        font-size: 0.6rem !important;
+    }
+
+    /* Accordion */
+    .accordion-stack {
+        border-top: none;
+    }
+
+    .accordion-header {
+        padding: 1.25rem 0;
+    }
+
+    .acc-num {
+        font-size: var(--mobile-text-small);
+        width: 30px;
+    }
+
+    .acc-title {
+        font-size: var(--mobile-text-small);
+    }
+
+    .acc-content {
+        padding: 0.75rem 0 1.5rem 2rem;
+    }
+
+    .acc-content p {
+        font-size: var(--mobile-text-small);
+    }
+
+    .plan-content .btn-outline {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    /* =============================================
+       TIMELINE - MOBILE VERTICAL REDESIGN
+       Left gold line + right-aligned milestones
+       ============================================= */
+
+    #progress {
+        padding-top: var(--mobile-section-pad-y);
+        padding-bottom: 5rem !important;
+        /* Standard air */
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Title */
+    #progress .progress-title {
+        margin-bottom: 5rem !important;
+    }
+
+    #progress .progress-title h2 {
+        font-size: var(--mobile-text-h2) !important;
+        line-height: var(--mobile-lh-heading) !important;
+        text-align: center !important;
+    }
+
+    /* Hide desktop background decoration on mobile */
+    #progress .container>div[style*="background-image"] {
+        display: none !important;
+    }
+
+    /* Timeline Container: holds the line + milestones */
+    .timeline-container {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 0 !important;
+        position: relative !important;
+    }
+
+    /* Hide desktop SVG / Canvas */
+    #timelineSvg,
+    .timeline-svg,
+    #timelineCanvas,
+    .timeline-path-svg {
+        display: none !important;
+    }
+
+    /* Hide path anchors */
+    .line-anchor {
+        display: none !important;
+    }
+
+    /* Milestone blocks — vertical flow */
+    .timeline-block {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        /* No transform reset — GSAP controls translateY for animation */
+        width: 100% !important;
+        margin-bottom: 3rem !important;
+        z-index: 10 !important;
+        /* Higher z-index to stay above line */
+        display: flex !important;
+        pointer-events: auto !important;
+    }
+
+    .timeline-block:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Content packet: horizontal (icon left, text right) */
+    .timeline-content-packet {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 1.25rem !important;
+        width: 100% !important;
+    }
+
+    /* Icon boxes — consistent size */
+    .timeline-icon-box {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        background: #080808 !important;
+        /* Solid obsidian to hide line behind */
+        opacity: 1 !important;
+        border: 1px solid rgba(197, 160, 101, 0.5) !important;
+        border-radius: 50% !important;
+        padding: 0.5rem !important;
+        box-shadow: inset 0 0 15px rgba(197, 160, 101, 0.05) !important;
+        position: relative !important;
+        z-index: 20 !important;
+        /* Even higher to cover line */
+        flex-shrink: 0 !important;
+    }
+
+    /* Milestone 4 — subtle gold glow (reduced intensity) */
+    .timeline-block[data-milestone="4"] .timeline-icon-box {
+        background: rgba(197, 169, 107, 0.1) !important;
+        border-color: rgba(197, 169, 107, 1.0) !important;
+        box-shadow:
+            inset 0 0 15px rgba(197, 160, 101, 0.2),
+            0 0 25px rgba(197, 169, 107, 0.3) !important;
+    }
+
+    /* Icon images */
+    .timeline-icon {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    /* Text block */
+    .timeline-text {
+        text-align: left !important;
+        padding: 0 !important;
+        background: transparent !important;
+        flex: 1 !important;
+        padding-top: 0.25rem !important;
+    }
+
+    .timeline-text h3 {
+        font-size: var(--mobile-text-body) !important;
+        /* Increased from small */
+        margin-bottom: 0.4rem !important;
+        line-height: 1.3 !important;
+        text-transform: uppercase !important;
+    }
+
+    .timeline-text p {
+        font-size: var(--mobile-text-body) !important;
+        line-height: 1.5 !important;
+        max-width: none !important;
+        color: var(--color-text-mist) !important;
+    }
+
+    /* Participation */
+    #participation {
+        padding-top: 5rem !important;
+        /* Standard air top */
+        padding-bottom: 3.5rem !important;
+        /* Balanced gap to Team */
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Hide the ambient light gradient mask on mobile */
+    #participation::before {
+        display: none !important;
+    }
+
+    /* Team Section - Reduce gap from Participation */
+    #team {
+        padding-top: 3.5rem !important;
+    }
+
+    #participation h2 {
+        /* Uses global --mobile-text-h2 */
+        margin-bottom: var(--mobile-gap-title);
+    }
+
+    #participation>.container>p {
+        font-size: var(--mobile-text-body);
+        margin-bottom: 2.5rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* =============================================
+       ROLES (PARTICIPATION) - MOBILE REDESIGN
+       Static vertical stack: Icon -> Title -> Subtitle -> Line -> Text
+       ============================================= */
+
+    /* Container: Disable 3D scene */
+    #participation .card-scene {
+        perspective: none !important;
+        height: auto !important;
+        margin-bottom: 1rem !important;
+        /* Very tight spacing */
+        width: 100% !important;
+        cursor: default !important;
+    }
+
+    #participation .card-scene:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Object: Stack faces centered inside a styled CARD */
+    #participation .card-object {
+        transform: none !important;
+        position: relative !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        /* CARD STYLE (Desktop-like) */
+        background: var(--color-base-obsidian) !important;
+        border: 1px solid rgba(197, 169, 107, 0.5) !important;
+        /* Gold border */
+        border-radius: 12px !important;
+        padding: 2.5rem 1.5rem !important;
+        /* Internal breathing room */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+
+        transition: none !important;
+    }
+
+    /* Faces: Unwrap children to allow reordering across faces */
+    #participation .card-face {
+        display: contents !important;
+        /* Key change: eliminates the wrapper */
+    }
+
+    /* --- FRONT FACE: Icon & Main Title --- */
+
+    /* Icon */
+    #participation .face-front img.card-icon {
+        order: 1 !important;
+        width: 60px !important;
+        height: auto !important;
+        margin: 0 auto 1.5rem auto !important;
+        filter: drop-shadow(0 0 15px rgba(197, 169, 107, 0.25)) !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Title (e.g. SEMBRADOR PATRIMONIAL) */
+    #participation .face-front h4 {
+        order: 2 !important;
+        font-family: var(--font-display) !important;
+        font-size: 1.3rem !important;
+        letter-spacing: 0.15em !important;
+        text-transform: uppercase !important;
+        color: var(--color-base-paper) !important;
+        margin-bottom: 0.75rem !important;
+        /* Space before line */
+        margin-top: 0 !important;
+        text-align: center !important;
+        line-height: 1.2 !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* --- BACK FACE: Subtitle, Line, Body --- */
+
+
+
+    /* Subtitle (e.g. QUIEN ASEGURA LA RAÍZ) */
+    #participation .face-back p:nth-of-type(1) {
+        order: 4 !important;
+        /* Moved after line */
+        color: var(--color-cta-gold) !important;
+        font-family: var(--font-display) !important;
+        font-size: 0.9rem !important;
+        letter-spacing: 0.05em !important;
+        margin-bottom: 1.5rem !important;
+        /* Space before body */
+        text-transform: uppercase !important;
+        opacity: 1 !important;
+        transform: none !important;
+        text-align: center !important;
+        margin-top: 0 !important;
+    }
+
+    /* Golden Line */
+    #participation .face-back div {
+        order: 3 !important;
+        /* Moved between title and subtitle */
+        width: 50px !important;
+        height: 1px !important;
+        background: var(--color-cta-gold) !important;
+        margin: 0 auto 0.75rem auto !important;
+        /* Balanced vertical spacing */
+        opacity: 0.6 !important;
+        transform: none !important;
+    }
+
+    /* Body Text */
+    #participation .face-back p:nth-of-type(2) {
+        order: 5 !important;
+        font-family: var(--font-body) !important;
+        font-size: var(--mobile-text-body) !important;
+        color: var(--color-text-mist) !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+        max-width: none !important;
+        margin-bottom: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Hide "Explorar más" link and anything else */
+    #participation .face-back a,
+    #participation .face-back p:nth-of-type(n+3) {
+        display: none !important;
+    }
+
+    /* Team */
+    #team h2 {
+        /* Uses global --mobile-text-h2 */
+        margin-bottom: 2.5rem;
+    }
+
+    .team-member {
+        text-align: center;
+    }
+
+    .member-image {
+        max-width: 280px;
+        filter: none !important;
+        /* Full color on mobile */
+        margin: 0 auto var(--space-s) auto;
+    }
+
+    /* Governance Pillar - Match width to Role cards (Full width) but thinner vertically */
+    /* Governance Pillar - Match width to Role cards (Full width) but thinner vertically */
+    .governance-pillar {
+        max-width: none !important;
+        width: 100% !important;
+        margin: 2rem 0 0 0 !important;
+        padding: 0 !important;
+        /* CRITICAL FIX: Remote desktop padding (1.5rem) to shrink height */
+    }
+
+    /* "Más fina... que no sea tan larga" -> Aggressively reduce vertical padding */
+    .governance-pillar .pillar-header {
+        padding: 0.75rem 1rem !important;
+        min-height: auto !important;
+    }
+
+    .governance-pillar .governance-arrow {
+        margin-top: 0.25rem !important;
+        /* Tighten arrow space */
+    }
+
+    .governance-pillar h4 {
+        line-height: 1.1 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* "El texto ... que no sea tan fino" -> Reduce internal margins/padding */
+    .governance-pillar .content-wrapper {
+        padding: 0 1.5rem 1.5rem 1.5rem !important;
+        max-width: none !important;
+    }
+
+    #team h4 {
+        text-align: center;
+        font-size: var(--mobile-text-body);
+        margin-bottom: 0.25rem;
+    }
+
+    .team-member>p:first-of-type {
+        text-align: center;
+    }
+
+    .team-member>p.text-mist {
+        text-align: center;
+        font-size: var(--mobile-text-small);
+    }
+
+    #team .text-center h4 {
+        font-size: var(--mobile-text-body);
+    }
+
+    /* Manifesto */
+    #manifesto {
+        min-height: auto;
+        padding-top: var(--mobile-section-pad-y);
+        padding-bottom: 12vh !important;
+        /* More air at bottom */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Background Faces */
+    .manifesto-bg {
+        position: absolute !important;
+        inset: auto !important;
+        top: auto !important;
+        bottom: 0 !important;
+        /* Adjusted: lowered slightly from original 3rem */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 475px !important;
+        /* 5% smaller */
+        height: auto !important;
+        /* opacity controlled by GSAP (0 → 0.4) */
+        z-index: 0 !important;
+        pointer-events: none !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+    }
+
+    .manifesto-img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        /* No forced opacity/transform — let GSAP handle */
+    }
+
+    #manifesto .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    #manifesto h2 {
+        font-size: var(--mobile-text-h2) !important;
+        margin-bottom: var(--mobile-gap-title);
+        text-align: center;
+        max-width: 38ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #manifesto .manifesto-content p:not(.text-gold) {
+        font-size: var(--mobile-text-body) !important;
+        line-height: var(--mobile-lh-body) !important;
+        margin-bottom: 2rem !important;
+        max-width: 100% !important;
+        /* Full width flow */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 var(--mobile-pad-x) !important;
+        /* Standard site padding */
+        text-align: center !important;
+    }
+
+    /* Conclusion: 5-line layout via explicit <br class="m-br"> */
+    #manifesto .text-gold {
+        font-family: var(--font-display);
+        color: var(--color-cta-gold) !important;
+        font-size: calc(var(--mobile-text-body) * 1.1) !important;
+        line-height: 1.4;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 0 !important;
+        /* opacity controlled by GSAP (0 → 1) */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+        position: relative;
+    }
+
+    /* Show mobile-only line breaks */
+    .m-br {
+        display: inline !important;
+    }
+
+    /* CTA */
+    /* CTA */
+    #dossier {
+        min-height: auto;
+        padding-top: 2rem !important;
+        /* Reduced top gap */
+        padding-bottom: var(--mobile-section-pad-y);
+        margin-top: 0 !important;
+    }
+
+    #dossier h2 {
+        /* Uses global --mobile-text-h2 */
+        margin-bottom: var(--mobile-gap-title);
+    }
+
+    #dossier>.container>p {
+        font-size: var(--mobile-text-body) !important;
+        margin-bottom: 2.5rem !important;
+    }
+
+    #dossier .btn-primary {
+        width: 100% !important;
+        max-width: 320px !important;
+        /* Same as Hero CTA */
+        margin: 0 auto !important;
+        font-size: var(--mobile-text-small) !important;
+        /* Same as Hero CTA */
+        padding: 1.1rem 2.2rem !important;
+        /* Same as Hero CTA */
+        letter-spacing: 0.15em !important;
+    }
+
+    /* --- MOBILE: Disable complex effects --- */
+    /* No parallax/3D transforms on mobile */
+    .parallax-img,
+    .parallax-title,
+    .parallax-text {
+        transform: none !important;
+        filter: none !important;
+    }
+
+    /* Disable ambient light on mobile */
+    #global-ambient-light {
+        display: none !important;
+    }
+
+    /* --- LOCATION (YUCATÁN) SECTION --- */
+    #location {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding-top: 8rem !important;
+        /* More air at top */
+        padding-bottom: var(--mobile-section-pad-y) !important;
+    }
+
+    /* Title Group (Reset absolute positioning) */
+    #location>div[style*="position: absolute"] {
+        position: relative !important;
+        top: auto !important;
+        width: 100% !important;
+        margin-bottom: 2rem !important;
+        /* H2 -> Map: 2rem */
+        text-align: center !important;
+    }
+
+    /* Eyebrow: YUCATÁN */
+    #location h3 {
+        font-size: var(--mobile-text-small) !important;
+        margin-bottom: 0.8rem !important;
+        /* Eyebrow -> H2: 0.8rem */
+        letter-spacing: 0.15em !important;
+    }
+
+    /* H2: El corazón... */
+    #location h2 {
+        font-size: var(--mobile-text-h2) !important;
+        line-height: var(--mobile-lh-heading) !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Scene Container */
+    .location-scene {
+        height: auto !important;
+        display: block !important;
+        padding: 0 var(--mobile-pad-x) !important;
+        /* Container padding */
+        max-width: 100% !important;
+    }
+
+    /* Parchment Wrapper */
+    .parchment-wrapper {
+        position: relative !important;
+        transform: none !important;
+        perspective: none !important;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Map Image */
+    .parchment-img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        /* Image -> First Card gap is handled by the wrapper or overlay margin */
+        margin-bottom: 2rem !important;
+    }
+
+    /* Map Pin (Optional: Ensure it doesn't break layout) */
+    .custom-map-pin {
+        /* Keep absolute if needed */
+        display: none !important;
+        /* Hide pin on mobile to simplify as per vertical stack request? Or keep visible? Prompt didn't sway either way. Hiding is safer for clean layout. */
+    }
+
+    /* Pillars Overlay (The Cards Container) */
+    .pillars-overlay {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.2rem !important;
+        /* Card -> Card: 1.2rem */
+        background: transparent !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Individual Cards */
+    .pillar-box {
+        position: relative !important;
+        inset: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        /* Slightly tighter padding horizontally to give text more room */
+        padding: 1rem 0.6rem !important;
+
+        /* Compact Vertical Layout */
+        min-height: auto !important;
+        /* Allow natural height */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        border: 1px solid rgba(212, 175, 55, 0.5) !important;
+        border-radius: 12px !important;
+        background: rgba(10, 10, 10, 0.8) !important;
+        text-align: center !important;
+        margin: 0 !important;
+
+        /* Subtle Static Glow (No animation) */
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.15) !important;
+        transition: none !important;
+    }
+
+    .pillar-box h4 {
+        color: var(--color-cta-gold) !important;
+        font-family: var(--font-display) !important;
+        /* Smaller title */
+        font-size: 0.9rem !important;
+        margin-bottom: 0.3rem !important;
+        /* Tighter spacing */
+        text-transform: uppercase;
+        line-height: 1.2 !important;
+    }
+
+    .pillar-box p {
+        /* Standard body size */
+        font-size: var(--mobile-text-body) !important;
+        color: var(--color-text-mist) !important;
+        line-height: 1.3 !important;
+        /* Tighter leading */
+        margin: 0 !important;
+        /* Slight letter spacing tweak to help fit */
+        letter-spacing: -0.01em !important;
+    }
+
+    /* --- TRANSITION FIX: Location -> Carousel --- */
+    /* Remove any unwanted gradients/shadows between sections on mobile */
+    #location,
+    #carousel-section {
+        background-image: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    #location::after,
+    #location::before,
+    #carousel-section::after,
+    #carousel-section::before {
+        display: none !important;
+        background: none !important;
+        content: none !important;
+    }
+
+    /* --- CAROUSEL (LA TIERRA QUE NOS RODEA) SECTION --- */
+    #carousel-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: var(--mobile-section-pad-y) !important;
+        padding-bottom: 0 !important;
+        /* Zero gap */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    /* Title Block */
+    .carousel-title-block {
+        margin-bottom: 2rem !important;
+        padding: 0 var(--mobile-pad-x) !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .carousel-title-block h2 {
+        font-family: var(--font-display) !important;
+        font-size: var(--mobile-text-h2) !important;
+        line-height: var(--mobile-lh-heading) !important;
+        color: var(--color-base-paper) !important;
+        margin: 0 !important;
+    }
+
+    /* Carousel Wrapper (Viewport) */
+    .integrated-carousel-wrapper {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        /* No padding, full width */
+        mask-image: none !important;
+        /* Remove fade edges */
+        -webkit-mask-image: none !important;
+    }
+
+    /* Track (Slider Container) */
+    .integrated-track {
+        display: flex !important;
+        gap: 0 !important;
+        /* No gap between slides in the track itself, handled by slide width */
+        width: 100% !important;
+        /* Will be managed by JS, but start clean */
+        animation: none !important;
+        /* Transition handled by JS or class */
+    }
+
+    /* Carousel Card (Single Slide) */
+    .carousel-card {
+        flex: 0 0 100% !important;
+        /* Single slide per view */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        border-radius: 0 !important;
+        /* Clean edges or keep radius? User: "Una sola imagen centrada". Let's use padding container if needed. */
+        padding: 0 var(--mobile-pad-x) !important;
+        /* Maintain side margins */
+        box-sizing: border-box !important;
+
+        margin: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        pointer-events: none !important;
+        /* Disable lightbox click */
+    }
+
+    /* Image Styling */
+    .carousel-card img {
+        width: 100% !important;
+        height: 50vh !important;
+        /* Large height */
+        max-height: 450px !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+        display: block !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* Text Below Image (Replaces Overlay) */
+    .card-overlay {
+        position: static !important;
+        background: transparent !important;
+        width: 100% !important;
+        padding: 1rem 0 0 0 !important;
+        text-align: center !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: block !important;
+    }
+
+    .card-overlay span {
+        font-family: var(--font-display) !important;
+        font-size: 1rem !important;
+        color: var(--color-cta-gold) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    /* Carousel indicators removed - mobile carousel uses swipe only */
+
+    /* --- MASTER PLAN SECTION --- */
+    #master-plan {
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 0 !important;
+        /* Zero top padding */
+        padding-bottom: var(--mobile-section-pad-y) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: var(--color-base-obsidian) !important;
+        overflow-x: hidden !important;
+        /* Prevent horizontal overflow */
+    }
+
+    /* FLATTEN STRUCTURE FOR REORDERING via display: contents */
+    .master-bg-wrapper,
+    .master-content-container,
+    .plan-content {
+        display: contents !important;
+    }
+
+    /* 1. EYEBROW: MASTER PLAN (Clean Text Swap) */
+    .plan-content>span:first-child {
+        order: 1 !important;
+        /* Hide original text containing the pipe "|" */
+        font-size: 0 !important;
+        text-align: center !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+        border: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Inject clean text without pipe */
+    .plan-content>span:first-child::after {
+        content: "MASTER PLAN";
+        font-family: var(--font-display) !important;
+        font-size: var(--mobile-text-small) !important;
+        color: var(--color-cta-gold) !important;
+        letter-spacing: 0.15em !important;
+        text-transform: uppercase !important;
+        display: block !important;
+    }
+
+    /* 2. H2 TITLE: ARQUITECTURA DE LA ARMONÍA (Unified Style) */
+    .plan-content>h2 {
+        order: 2 !important;
+        font-family: var(--font-display) !important;
+        font-size: var(--mobile-text-h2) !important;
+        line-height: var(--mobile-lh-heading) !important;
+        text-align: center !important;
+        margin-bottom: var(--mobile-gap-paragraph) !important;
+        width: 100% !important;
+        color: var(--color-base-paper) !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force span inside H2 to inherit styles (fix "de la armonía" disjoint) */
+    .plan-content>h2 span {
+        font-family: inherit !important;
+        font-size: inherit !important;
+        color: inherit !important;
+        font-weight: inherit !important;
+        text-transform: inherit !important;
+        display: inline !important;
+    }
+
+    .plan-content>h2 br {
+        display: none !important;
+    }
+
+    /* Inline title */
+
+    /* 3. INTRO PARAGRAPH (Body) */
+    .plan-content>p {
+        order: 3 !important;
+        font-size: var(--mobile-text-body) !important;
+        line-height: var(--mobile-lh-body) !important;
+        text-align: center !important;
+        max-width: 100% !important;
+        /* Full width flow */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 2rem !important;
+        padding: 0 var(--mobile-pad-x) !important;
+        /* Standard padding */
+        /* Ensure breathing room */
+        color: var(--color-text-mist) !important;
+    }
+
+    /* 4. MASTER PLAN IMAGE */
+    .master-image-stack {
+        order: 4 !important;
+        width: 100% !important;
+        height: auto !important;
+        margin-bottom: 2rem !important;
+        position: relative !important;
+        display: block !important;
+        /* Ensure no overflowing */
+        max-width: 100vw !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .master-bg-img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        position: relative !important;
+        transform: none !important;
+        display: block !important;
+    }
+
+    /* HIDE HOTSPOTS & OVERLAYS */
+    .hotspots-layer,
+    .reading-overlay,
+    .mp-hotspot {
+        display: none !important;
+    }
+
+    /* 5. TEXT BLOCKS (01/02/03) - Clean Vertical List */
+    .accordion-stack {
+        order: 5 !important;
+        border: none !important;
+        border-top: none !important;
+
+        /* Container alignment */
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding-inline: clamp(18px, 5vw, 24px) !important;
+        margin-inline: auto !important;
+        margin-bottom: 2.5rem !important;
+
+        /* Vertical stack */
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    /* Force VISIBILITY for all items (override accordion logic) */
+    /* NOTE: opacity NOT forced here — GSAP controls it for scroll reveal animation */
+    .accordion-item,
+    .accordion-collapse,
+    .accordion-body {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        /* CRITICAL FIXES FOR VISIBILITY */
+        display: block !important;
+        visibility: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    /* Each individual point block: centered, contained */
+    /* NOTE: transform NOT forced here — GSAP controls it for scroll reveal animation */
+    .accordion-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        /* Full width flow */
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        text-align: center !important;
+        position: static !important;
+    }
+
+    /* Header (Number + Title) */
+    .accordion-header {
+        pointer-events: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        margin-bottom: 0.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        /* Stack number, then title? User said "mismo linea o arriba" */
+        align-items: center !important;
+        text-align: center !important;
+        gap: 0.25rem !important;
+
+        /* Ensure header is also fully visible/opaque */
+        opacity: 1 !important;
+    }
+
+    /* Header Content Layout */
+    .accordion-header>div {
+        /* Override internal flex layout of header */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.25rem !important;
+        width: 100% !important;
+    }
+
+    .acc-num {
+        color: var(--color-cta-gold) !important;
+        font-family: var(--font-display) !important;
+        font-size: 1rem !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .acc-title {
+        color: var(--color-cta-gold) !important;
+        font-family: var(--font-display) !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 0.05em !important;
+        display: block !important;
+        text-transform: uppercase !important;
+        opacity: 1 !important;
+        /* Ensure uniform intensity */
+    }
+
+    /* Hide Chevrons & Arrows */
+    .accordion-icon,
+    .accordion-header svg,
+    .acc-arrow {
+        display: none !important;
+    }
+
+    /* =============================================
+       ROOT CAUSE FIX: .acc-content visibility
+       main.css sets .acc-content { opacity: 0; transform: translateY(-10px); }
+       and only .accordion-item.active .acc-content gets opacity:1.
+       Items 02/03 lack .active class → content invisible.
+       We force ALL .acc-content visible in mobile.
+       ============================================= */
+    .acc-content {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+
+        /* Reset inline padding that pushes text left */
+        padding: 0.5rem 0 0 0 !important;
+
+        /* Ensure visible and in flow */
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        height: auto !important;
+    }
+
+    /* Also override inline max-height:0 on accordion-body via ID selectors for extra specificity */
+    #acc-1,
+    #acc-2,
+    #acc-3 {
+        max-height: none !important;
+        overflow: visible !important;
+        height: auto !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Body Text (Description) */
+    .accordion-body p {
+        font-size: var(--mobile-text-body) !important;
+        color: var(--color-text-mist) !important;
+        line-height: var(--mobile-lh-body) !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    /* 6. CTA BUTTON */
+    .master-cta-container {
+        order: 6 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 0 !important;
+        position: relative !important;
+        inset: auto !important;
+        pointer-events: auto !important;
+        padding: 0 var(--mobile-pad-x) !important;
+    }
+
+    .master-cta-container .btn-primary {
+        width: 100% !important;
+        max-width: 300px !important;
+        padding: 1rem 1.5rem !important;
+        font-size: 0.9rem !important;
+    }
+
+}
+
+/* ==========================================================================
+       7. SPECIAL: HEIGHT-CONSTRAINED SCREENS (Laptop with small height)
+       ========================================================================== */
+@media (max-height: 750px) and (min-width: 768px) {
+    .section-padding {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    #hero {
+        min-height: 100vh;
+    }
+
+    #hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #manifesto {
+        min-height: 100vh;
+    }
+
+    #manifesto h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    #manifesto .manifesto-content p {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .manifesto-img {
+        height: 55%;
+        opacity: 0.2;
+    }
+}
+
+/* ==========================================================================
+   8. UTILITY OVERRIDES FOR INLINE STYLES
+   ========================================================================== */
+
+/* Force responsive behavior on inline-styled elements */
+@media (max-width: 767px) {
+    [style*="font-size: 3.5rem"] {
+        font-size: 2rem !important;
+    }
+
+    [style*="font-size: 2.5rem"] {
+        font-size: 1.5rem !important;
+    }
+
+    [style*="padding-left: 3rem"] {
+        padding-left: 0 !important;
+    }
+
+    [style*="gap: 4rem"] {
+        gap: 2rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    [style*="font-size: 3.5rem"] {
+        font-size: 2.5rem !important;
+    }
+
+    [style*="font-size: 2.5rem"] {
+        font-size: 1.8rem !important;
+    }
+}
+
+/* --- CAROUSEL EDITORIAL STYLE RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .carousel-card {
+        width: clamp(160px, 22vw, 260px);
+        /* Maintain aspect ratio, no fixed height */
+        aspect-ratio: 3 / 4;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile: Focused Swipeflow */
+    .integrated-carousel-wrapper {
+        height: 50vh;
+    }
+
+    .integrated-track {
+        gap: 1.5rem;
+    }
+
+    .carousel-card {
+        height: auto;
+        width: clamp(140px, 45vw, 220px);
+        /* Proportional height from aspect-ratio */
+        aspect-ratio: 3 / 4;
+    }
+
+    /* Always visible label on touch devices */
+    .card-overlay {
+        transform: translateY(0);
+        background: rgba(10, 10, 10, 0.85);
+        padding: 1rem;
+    }
+
+    .card-overlay span {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================================================
+   MOBILE CAROUSEL (Custom Implementation - Section 3.5)
+   ========================================================================== */
+
+/* Visibility Toggles */
+.mobile-only {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+/* Base Wrapper */
+.mobile-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    /* Center in section */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Force-hide any external dots/pagination that might be injected */
+.mobile-carousel-wrapper .dots,
+.mobile-carousel-wrapper .pagination,
+.mobile-carousel-wrapper .slick-dots,
+.mobile-carousel-wrapper .owl-dots,
+.mobile-carousel-wrapper .carousel-indicators,
+.mobile-carousel-wrapper ul[class*="dots"],
+.mobile-carousel-wrapper div[class*="dots"] {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Slide Construction */
+.mobile-carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.mobile-carousel-track {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    will-change: transform;
+    /* No width: 100% here — flex children dictate actual width */
+    /* transition managed by JS */
+}
+
+.mobile-carousel-slide {
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    min-width: 100%;
+    /* Guarantees full viewport width */
+    width: 100%;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image Styling */
+.mobile-img-container {
+    width: 100%;
+    /* "Half the section" -> approx 40-45vh */
+    height: 45vh;
+    max-height: 500px;
+    border-radius: 20px;
+    /* Rounded borders as requested */
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
+.mobile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Title Styling */
+.mobile-slide-title {
+    margin-top: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--color-cta-gold);
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Nuclear Kill: Hide any dynamically-injected dots/indicators */
+.carousel-indicators,
+.indicator-dot,
+[class*="indicator"],
+[class*="carousel-dot"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* =============================================
+   FOOTER - MOBILE MINIMALISM (Final Overrides)
+   ============================================= */
+@media (max-width: 767px) {
+    footer.site-footer {
+        padding: 1.5rem 0 !important;
+        /* Thinner height */
+        min-height: auto !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.03) !important;
+        /* Very subtle border */
+    }
+
+    footer.site-footer p {
+        font-size: 0.7rem !important;
+        /* Minimalist font size */
+        opacity: 0.4 !important;
+        /* Reduced visual weight */
+        line-height: 1.4 !important;
+        padding: 0 2rem !important;
+        white-space: normal !important;
+        /* Allow text wrapping */
+        text-overflow: clip !important;
+        overflow: visible !important;
+    }
+
+    /* --- DOSSIER MODAL FIXES (Fit on Screen) --- */
+    #dossier-modal .modal-box {
+        padding: 1.25rem !important;
+        /* Ultra compact */
+        width: 90% !important;
+        margin: auto !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+    }
+
+    #dossier-modal .modal-header h3 {
+        font-size: 1.1rem !important;
+        /* Compact title */
+        margin-bottom: 0.15rem !important;
+    }
+
+    #dossier-modal .modal-header p {
+        font-size: 0.75rem !important;
+        opacity: 0.7 !important;
+        margin-bottom: 0.4rem !important;
+        /* Minimal gap */
+        line-height: 1.3 !important;
+        max-width: 100% !important;
+    }
+
+    /* Force Radio Group to Column */
+    #dossier-modal .radio-group {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+        /* Minimal gap */
+        grid-template-columns: 1fr !important;
+        margin-top: 0.2rem !important;
+    }
+
+    #dossier-modal .radio-group label {
+        font-size: 0.9rem !important;
+        /* Readable touch targets */
+        padding: 0.1rem 0 !important;
+        /* Minimal padding */
+    }
+
+    /* Compact Fields */
+    #dossier-modal .modal-field {
+        margin-bottom: 0.4rem !important;
+        /* Minimal gap */
+    }
+
+    #dossier-modal label {
+        margin-bottom: 0.1rem !important;
+    }
+
+    #dossier-modal .contact-method-selector {
+        gap: 1rem !important;
+        margin: 0.1rem 0 !important;
+    }
+
+    #dossier-modal input {
+        font-size: 0.9rem !important;
+        padding: 0.4rem !important;
+        /* Slimmer inputs */
+        margin-bottom: 0 !important;
+    }
+
+    #dossier-modal .modal-submit {
+        padding: 0.6rem !important;
+        font-size: 0.9rem !important;
+        margin-top: 0.4rem !important;
+    }
+
+    /* RITUAL MENU OVERLAY MOBILE ADJUSTMENTS */
+    /* RITUAL MENU OVERLAY MOBILE ADJUSTMENTS */
+    #ritual-menu-overlay {
+        padding-top: 6rem !important;
+        padding-bottom: 6rem !important;
+        align-items: center !important;
+        /* Scroll OFF */
+        overflow-y: hidden !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    #ritual-menu-overlay::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+    }
+
+    #ritual-menu-overlay .ritual-nav {
+        gap: 1.5rem !important;
+        /* Reduced gap between items */
+        width: 100% !important;
+    }
+
+    #ritual-menu-overlay .ritual-nav a {
+        font-size: 1.8rem !important;
+        /* Slightly smaller */
+    }
+}

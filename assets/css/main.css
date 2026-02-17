@@ -1,0 +1,2365 @@
+@import 'tokens.css';
+@import 'reset.css';
+@import 'responsive.css';
+@import 'footer.css';
+@import 'ambient-light.css';
+
+/* ==========================================================================
+   Z-INDEX SCALE (Documented — Stabilization Patch 2026-02-12)
+   ==========================================================================
+   -1       : Ambient light, sunlight backgrounds
+    0       : Section backgrounds, decorative layers
+    1-2     : Content layers within sections
+    5-10    : Interactive overlays (hotspots, gradient masks, pins)
+    20      : CTA containers, elevated interactive elements
+    50-100  : Active/focused states (pillar tooltip, hotspot active)
+    1000    : Fixed header (#top-bar)
+    2000    : Ritual menu overlay
+    10000   : Modals (dossier, manifesto, lightbox, video)
+   ========================================================================== */
+
+/* --- GLOBAL STYLES --- */
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    /* Editorial readability */
+    font-weight: 300;
+    color: var(--color-base-paper);
+    /* Default text color (assuming dark sections mostly) */
+    background-color: var(--color-base-obsidian);
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Fonts Setup (To be loaded in HTML via Google Fonts) */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    line-height: var(--lh-heading);
+    font-weight: 400;
+    /* Cinzel usually works best at 400 or 500 */
+    letter-spacing: 0.05em;
+    /* Increased base spacing for elegance */
+}
+
+h3 {
+    letter-spacing: 0.25em;
+    /* Premium eyebrow feel */
+    font-weight: 500;
+}
+
+
+h1 {
+    font-size: var(--text-h1);
+}
+
+h2 {
+    font-size: var(--text-h2);
+}
+
+h3 {
+    font-size: var(--text-h3);
+}
+
+/* --- UTILITIES --- */
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.section-padding {
+    padding-top: var(--section-pad-y);
+    padding-bottom: var(--section-pad-y);
+    /* Safe area ensures last element never touches edge */
+    min-height: auto;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-cols-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+}
+
+@media (min-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gold {
+    color: var(--color-cta-gold);
+}
+
+.text-mist {
+    color: var(--color-text-mist);
+}
+
+.text-amber {
+    color: var(--color-accent-amber);
+}
+
+/* Button Styles */
+.btn-primary {
+    display: inline-block;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    border: 1px solid var(--color-cta-gold);
+    color: var(--color-cta-gold);
+    font-family: var(--font-display);
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-cta-gold);
+    color: var(--color-base-obsidian);
+    box-shadow: 0 0 20px rgba(197, 169, 107, 0.4);
+    /* Luxury Glow */
+}
+
+/* --- THEMES --- */
+.theme-dark {
+    background-color: var(--color-base-obsidian);
+    color: var(--color-base-paper);
+}
+
+.theme-jungle {
+    background-color: var(--color-base-jungle);
+    color: var(--color-text-mist);
+}
+
+.theme-obsidian {
+    background-color: var(--color-base-obsidian);
+    color: var(--color-base-paper);
+}
+
+/* --- SECTION STACKING (Critical for Global Sunlight) ---
+   All sections must be ABOVE the sunlight layer (z-index: -1)
+   Sections scroll OVER the fixed light background
+   Individual section backgrounds are set by theme classes
+*/
+main>section {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* --- COMPONENTS: 3D FLIP CARDS (Participation) --- */
+
+/* --- SECTIONS EXPANSION (FULL HEIGHT) --- */
+/* --- SECTIONS EXPANSION (FULL HEIGHT) --- */
+#participation,
+#team,
+#manifesto {
+    min-height: auto !important;
+    /* Allow content to dictate height */
+    padding-block: 15vh;
+    /* Massive breathing room */
+}
+
+/* --- COMPONENTS: 3D FLIP CARDS (Participation) --- */
+
+.card-scene {
+    width: 100%;
+    height: 450px;
+    /* Taller for better proportion */
+    perspective: 1500px;
+    /* Increased for realistic depth */
+    cursor: pointer;
+}
+
+.card-object {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* Slower, cinematic, weighty flip */
+    transition: transform 1.4s cubic-bezier(0.15, 0.9, 0.25, 1);
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    /* Solid object shadow */
+}
+
+.card-scene:hover .card-object {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /* KEY FIX: Hidden backface prevents bleeding */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Essential for child elements to float */
+    transform-style: preserve-3d;
+}
+
+/* Front Face: Solid Opaque to block back content */
+.face-front {
+    background: var(--color-base-obsidian);
+    /* Solid obsidian */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.face-front .card-icon {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    transition: transform 0.5s ease;
+}
+
+/* 3D Parallax Elements (Z-Axis Depth) */
+.parallax-img {
+    transform: translateZ(80px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.parallax-title {
+    transform: translateZ(60px);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.card-scene:hover .face-front .card-icon {
+    transform: translateZ(80px) scale(1.1);
+}
+
+/* Back Face: REAL 3D DEPTH */
+.face-back {
+    background: var(--color-base-obsidian);
+    border: 1px solid var(--color-cta-gold);
+    transform: rotateY(180deg);
+    padding: 2.5rem;
+    z-index: 1;
+    /* Essential for children to pop out */
+    transform-style: preserve-3d;
+    /* Inner shadow to give depth to the "floor" */
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+.parallax-text {
+    /* NOTICEABLE SEPARATION: Floating well above surface */
+    transform: translateZ(80px);
+    /* Cast shadow on the card surface */
+    filter: drop-shadow(0 15px 8px rgba(0, 0, 0, 0.8));
+    /* Crisp text */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Specific lifting for separator line */
+.parallax-text[style*="height: 1px"] {
+    transform: translateZ(70px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive adjustment for Cards */
+@media (max-width: 768px) {
+    .card-scene {
+        height: 350px;
+        margin-bottom: 2rem;
+    }
+
+    .face-front .card-icon {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* --- COMPONENTS: TEAM --- */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    /* Increased gap for breathing room */
+}
+
+.team-member {
+    text-align: center;
+    /* Center align for better balance in large sections */
+}
+
+.member-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(110%);
+    transition: filter 0.5s;
+    margin-bottom: var(--space-s);
+}
+
+.team-member:hover .member-image {
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* --- SPECIAL: PARCHMENT SECTION --- */
+#master-plan {
+    position: relative;
+    /* Height will be controlled by ScrollTrigger pinning later, 
+       but we need min-height for content visibility now */
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.canvas-container canvas,
+.canvas-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.plan-overlay {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    /* Let scroll pass through */
+}
+
+/* --- SECTION SPECIFIC: LOCATION EXPANDED --- */
+.section-location-expanded {
+    padding-top: var(--space-xxl, 8rem);
+    padding-bottom: var(--space-xxl, 8rem);
+}
+
+.section-location-expanded .container {
+    max-width: 1400px;
+    /* Wider container for this section */
+}
+
+.section-location-expanded .grid-cols-2 {
+    gap: 6rem;
+    /* Larger gap */
+    grid-template-columns: 1.2fr 0.8fr;
+    /* Give more space to map */
+    align-items: center !important;
+    /* Center vertically */
+}
+
+.section-location-expanded .location-visual {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.section-location-expanded h2 {
+    font-size: 3.5rem;
+    /* Larger heading */
+    margin-bottom: 5rem !important;
+}
+
+.section-location-expanded .location-content h4 {
+    font-size: 1.5rem;
+    /* Larger subtitles */
+    color: var(--color-cta-gold);
+    margin-bottom: 0.75rem;
+}
+
+.section-location-expanded .location-content p {
+    font-size: 1.1rem;
+    /* Larger text */
+    line-height: 1.6;
+}
+
+.section-location-expanded .location-content li {
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .section-location-expanded .grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .section-location-expanded h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* --- INFINITE CAROUSEL --- */
+.carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+}
+
+.carousel-item {
+    width: 300px;
+    /* Fixed width for consistency */
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    border-color: var(--color-cta-gold);
+    z-index: 10;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) desaturate(30%) contrast(110%);
+    /* Vintage/Sanctuary vibe */
+    transition: filter 0.5s ease;
+}
+
+.carousel-item:hover img {
+    filter: sepia(0%) desaturate(0%) contrast(100%);
+    /* Full color on hover */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-300px * 5 - 2rem * 5));
+        /* Move by Width of 1 set + gaps */
+    }
+}
+
+/* --- BASE COMPONENT STYLES (Responsive overrides in responsive.css) --- */
+
+/* Section 2: Manifesto Image */
+.manifesto-img {
+    width: 90%;
+    height: 85%;
+    object-fit: contain;
+    object-position: center;
+    opacity: 0.4;
+    transition: all 0.5s ease;
+}
+
+/* Section 4: Master Plan Image */
+.master-visual-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scale(1.15);
+    transform-origin: center left;
+    transition: transform 0.5s ease;
+}
+
+/* --- SECTION 3: LOCATION (3D ANIMATION) --- */
+
+/* Scene Container */
+.location-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1500px;
+}
+
+/* Wrapper for the Map - NOW CONTAINS PILLARS */
+.parchment-wrapper {
+    position: relative;
+    z-index: 10;
+    will-change: transform;
+    display: inline-block;
+    /* Shrink to content size */
+}
+
+.parchment-img {
+    display: block;
+    width: 70vw;
+    max-width: 900px;
+    min-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
+    /* Fixes ghost rectangle on PNG */
+    border-radius: 4px;
+    transform-origin: center bottom;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Custom Map Pin - Dynamic Overlay */
+.custom-map-pin {
+    position: absolute;
+    top: 29.5%;
+    left: 59.5%;
+    width: clamp(32px, 5vw, 48px);
+    height: clamp(32px, 5vw, 48px);
+    color: #B5925F;
+    z-index: 20;
+    transform: translate(-50%, -100%) translateZ(2px);
+    /* Double shadow: one for 3D gold edge, one for ground shadow */
+    filter: drop-shadow(0 2px 0px #826640) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6));
+    opacity: 0;
+    /* Animated by GSAP */
+    pointer-events: auto;
+    /* Enable interaction */
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
+}
+
+.custom-map-pin:hover {
+    transform: translate(-50%, -100%) translateZ(2px) scale(1.1);
+    /* Subtle scale up */
+    color: var(--color-cta-gold);
+    /* Brighter gold on hover */
+    filter: drop-shadow(0 2px 0px #826640) drop-shadow(0 0 10px rgba(181, 146, 95, 0.3));
+    /* Very subtle, natural glow */
+}
+
+/* Map Tooltip */
+.map-tooltip {
+    position: absolute;
+    top: -45px;
+    /* Moved slightly higher to account for larger size */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.75);
+    /* Matched to pillar-box */
+    color: var(--color-cta-gold);
+    padding: 0.6rem 1.2rem;
+    /* Larger padding */
+    border-radius: 8px;
+    /* Slightly more rounded like pillars */
+    border: 1px solid rgba(197, 169, 107, 0.4);
+    /* Matched border opacity */
+    font-size: 1rem;
+    /* Increased from 0.85rem */
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(10px);
+    /* Increased blur to match pillars */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Matched shadow depth */
+}
+
+.custom-map-pin:hover .map-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Pillars Overlay - ABSOLUTE WITHIN PARCHMENT WRAPPER */
+.pillars-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    /* Increased to stay on top */
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+/* Text Pillars - Positioned with percentages RELATIVE TO PARCHMENT */
+.pillar-box {
+    position: absolute;
+    opacity: 0;
+    /* Hidden by default, revealed by GSAP */
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+    border-radius: 8px;
+    border: 1px solid rgba(197, 169, 107, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+    /* Removed transform to fix GSAP conflict */
+    max-width: clamp(160px, 22vw, 260px);
+    transform: translateZ(100px);
+    /* Deep Z-index base */
+    pointer-events: auto;
+    /* Enable interaction by default for hover detection */
+
+    /* Anti-Jitter / Performance Fixes */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    will-change: transform;
+}
+
+.pillar-box h4 {
+    font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+    margin-bottom: 0.4rem;
+    pointer-events: none;
+    /* Let clicks pass through text to box */
+}
+
+.pillar-box p {
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+.pillar-box:hover {
+    border-color: var(--color-cta-gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(197, 169, 107, 0.2);
+    cursor: default;
+    z-index: 100;
+    /* Ensure it pops above everything */
+}
+
+/* PILLAR POSITIONS - Relative to parchment, using percentages */
+.pillar-1 {
+    top: 40%;
+    left: 20%;
+    text-align: right;
+    transform: translateX(-100%) translateZ(100px);
+}
+
+.pillar-1:hover {
+    transform: translateX(-100%) translateZ(120px) scale(1.06);
+}
+
+.pillar-2 {
+    top: 10%;
+    right: 17%;
+    text-align: left;
+    transform: translateX(100%) translateZ(100px);
+}
+
+.pillar-2:hover {
+    transform: translateX(100%) translateZ(120px) scale(1.06);
+}
+
+.pillar-3 {
+    bottom: -8%;
+    left: 50%;
+    transform: translateX(-50%) translateZ(100px);
+    text-align: center;
+    max-width: clamp(200px, 35vw, 380px);
+}
+
+.pillar-3:hover {
+    transform: translateX(-50%) translateZ(120px) scale(1.06);
+}
+
+
+
+/* SVG Lines */
+.pillar-line {
+    opacity: 0;
+    stroke-linecap: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+.pillar-dot {
+    opacity: 0;
+}
+
+/* Responsive adjustments handled by responsive.css */
+
+/* --- SECTION 4: MASTER PLAN ACCORDION (PREMIUM) --- */
+
+.accordion-item {
+    border-bottom: 1px solid rgba(197, 169, 107, 0.2);
+    /* Subtle Gold Line */
+    transition: border-color 0.3s ease;
+}
+
+.accordion-item:first-child {
+    border-top: none;
+    /* Handled by stack container */
+}
+
+.accordion-item.active {
+    border-color: rgba(197, 169, 107, 0.6);
+    /* Highlights active section boundary */
+}
+
+.accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    /* Slightly dimmed when inactive */
+}
+
+.accordion-header:hover,
+.accordion-item.active .accordion-header {
+    opacity: 1;
+    /* Full brightness on interact/active */
+}
+
+.accordion-header:focus-visible {
+    outline: 1px dashed var(--color-cta-gold);
+    outline-offset: 5px;
+}
+
+.acc-num {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    width: 35px;
+    font-variant-numeric: tabular-nums;
+    transition: opacity 0.3s;
+}
+
+.accordion-item.active .acc-num {
+    opacity: 1;
+    color: var(--color-cta-gold);
+}
+
+.acc-title {
+    font-size: 1.1rem;
+    flex-grow: 1;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+}
+
+.accordion-item.active .acc-title {
+    color: var(--color-cta-gold) !important;
+}
+
+/* Chevron */
+.acc-arrow svg {
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Body Fade In */
+.accordion-body {
+    will-change: max-height;
+    /* content is hidden by max-height: 0 */
+}
+
+.acc-content {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    /* Delayed slightly to wait for opening */
+    transition-delay: 0.1s;
+}
+
+.accordion-item.active .acc-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- SECTION 5: TIMELINE (STICKY CHAPTER MODE) --- */
+
+#progress {
+    overflow: visible;
+    /* Massive safe area buffer: 25% viewport height of empty space */
+    /* This ensures timeline finishes well before next section invades */
+    padding-bottom: clamp(15rem, 25vh, 25rem);
+}
+
+.timeline-container {
+    position: relative;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    /* Fluid min-height: Increased for vertical rhythm (Editorial Breathing Room) */
+    min-height: clamp(1200px, 160vh, 2200px);
+    /* Fluid padding */
+    padding: var(--space-m) 0 var(--safe-area-bottom) 0;
+}
+
+/* SVG for the line - Full container coverage */
+.timeline-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Behind blocks (z-2) and icons (z-5) */
+    pointer-events: none;
+    overflow: visible;
+}
+
+.timeline-path {
+    /* Pure Bezier curves - smooth joins guaranteed */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Invisible anchor points for path calculation */
+.line-anchor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Old canvas styles removed - now using SVG */
+
+/* Individual Blocks - Fluid Width */
+.timeline-block {
+    position: absolute;
+    /* Fluid width: 280px min, scales up to 400px */
+    width: clamp(280px, 25vw, 400px);
+    z-index: 2;
+}
+
+.block-left {
+    left: 5%;
+    /* Aligned with SVG path left curve start approx 20% in SVG coords scalled */
+}
+
+.block-right {
+    right: 5%;
+    /* Aligned with SVG path right curve */
+}
+
+/* Packet: Icon Top, Text Bottom */
+.timeline-content-packet {
+    display: flex;
+    flex-direction: column;
+    /* Stacked: Icon top, Text bottom */
+    align-items: center;
+    /* Center horizontally */
+    gap: 1rem;
+}
+
+/* Icon Box - "Glass Pillar" Style */
+.timeline-icon-box {
+    /* Fluid size */
+    width: clamp(100px, 10vw, 160px);
+    height: clamp(100px, 10vw, 160px);
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 5;
+
+    /* GLASSMORPHISM AESTHETIC - SOLID VERSION FOR MASKING */
+    /* Solid background matching page bg to completely hide the line behind */
+    background: var(--color-base-obsidian);
+    /* Subtle blur for depth */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Gold circle border */
+    border: 1px solid rgba(197, 160, 101, 0.5);
+    /* Rounded circle */
+    border-radius: 50%;
+    /* Inner padding */
+    padding: var(--space-xs);
+
+    /* REMOVED: Heavy shadow */
+    box-shadow: none;
+
+    /* Optional: Subtle inner glow for premium feel */
+    box-shadow: inset 0 0 20px rgba(197, 160, 101, 0.05);
+
+    /* Interactive */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.timeline-icon-box:hover {
+    transform: scale(1.08);
+    /* Slow, dignified lift */
+    border-color: rgba(197, 169, 107, 0.8);
+    box-shadow: inset 0 0 30px rgba(197, 160, 101, 0.2), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Removed shadow as requested */
+    filter: none;
+}
+
+/* Text Styling - Fluid */
+.timeline-text {
+    position: relative;
+    z-index: 5;
+    background-color: var(--color-base-obsidian);
+    /* Protective plate */
+    padding: 0.5rem;
+    /* Buffer zone */
+    border-radius: 8px;
+}
+
+.timeline-text h3 {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-xs);
+    color: var(--color-cta-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeline-text p {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--color-text-mist);
+    max-width: clamp(260px, 20vw, 350px);
+    margin: 0 auto;
+}
+
+/* Common Centering */
+.timeline-text {
+    text-align: center;
+}
+
+/* Alignments - Fluid Width */
+.block-left {
+    left: 2%;
+    transform: translateX(0);
+    width: clamp(280px, 25vw, 400px);
+}
+
+.block-left .timeline-content-packet {
+    align-items: center;
+}
+
+.block-right {
+    right: 2%;
+    transform: translateX(0);
+    width: clamp(280px, 25vw, 400px);
+}
+
+.block-right .timeline-content-packet {
+    align-items: center;
+}
+
+/* New Center Block for Final Milestone - ROBUST CENTERING */
+.block-center {
+    width: 100%;
+    left: 0;
+    right: 0;
+    transform: none;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    /* Layout wrapper doesn't block clicks */
+}
+
+.block-center .timeline-content-packet {
+    pointer-events: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-s);
+    max-width: 450px;
+}
+
+.block-center .timeline-text {
+    text-align: center;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Specific text alignment override */
+.block-left .timeline-text,
+.block-right .timeline-text {
+    align-items: center;
+    text-align: center;
+}
+
+/* ============================================
+   TIMELINE ANIMATION STATES
+   Canvas-based line drawing (no SVG, no duplicates)
+   ============================================ */
+
+/* Title - starts hidden */
+.progress-title {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Milestones - start hidden */
+.timeline-milestone {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+}
+
+/* Canvas for timeline line - positioned absolutely, behind content */
+#timelineCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Responsive adjustments handled by responsive.css */
+
+/* --- NEW MASTER PLAN SECTION (Full Background) --- */
+/* Override specific section styles for full immersion */
+#master-plan {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    /* FIX: Prevents jumping on accordion toggle */
+    padding: 0 !important;
+    padding-top: 15vh !important;
+    /* Fixed start position */
+    padding-bottom: 5vh !important;
+}
+
+.master-bg-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    /* Adjusted slightly inward */
+    transform: translateY(-55%);
+    /* Removed fixed scale for cleaner layout control */
+    transform-origin: center center;
+    z-index: 0;
+    width: 55vw;
+    /* Reduced width to make room for column balance */
+    height: 85vh;
+    /* Constrained height */
+    display: flex;
+    flex-direction: column;
+    /* Stack image and button vertically */
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+}
+
+/* STATE B: Removed Reading Mode styles (No more scaling/darkening) */
+
+/* Image - Flexible to fit in available space above button */
+.master-bg-img {
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+    object-position: center bottom;
+    /* Anchor to bottom near button */
+    opacity: 1;
+    margin-bottom: 2rem;
+    /* Space between image and button */
+}
+
+/* New Button Container */
+.master-cta-container {
+    z-index: 20;
+    pointer-events: auto;
+    margin-top: -2rem;
+    /* Sit directly below image stack */
+}
+
+/* Reading Overlay - Covers image + hotspots area, hidden by default */
+/* Reading Overlay - Clean Implementation to prevent banding */
+.reading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+
+    /* STATIC GRADIENT - NO ANIMATION ON GRADIENT VALUES */
+    /* Solid Darkening Layer (No Gradient Banding) */
+    background-color: var(--color-base-obsidian);
+
+    /* Interaction: Opacity Only */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    will-change: opacity;
+}
+
+/* Active State - Darken the image by showing the black overlay at 40% opacity */
+#master-plan.reading-mode .reading-overlay {
+    opacity: 0.4;
+}
+
+/* --- BACKGROUND UNITY (Seamless Flow) --- */
+#location,
+#carousel-infinite,
+#timeline,
+#master-plan {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Content Container - On the right, but not too far */
+.master-content-container {
+    position: absolute;
+    right: 4vw;
+    /* More centered */
+    top: 50%;
+    transform: translateY(-50%) translateX(0);
+    z-index: 10;
+    width: 38vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align text to left */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* STATE B: Text shifts left toward center */
+#master-plan.reading-mode .master-content-container {
+    transform: translateY(-50%) translateX(-20px);
+    /* Shift toward center */
+}
+
+/* Content styling */
+#master-plan .plan-content {
+    max-width: 480px;
+    margin-right: 0;
+    padding-left: 0;
+    transition: none;
+}
+
+/* --- INTEGRATED CAROUSEL (Inside Location) --- */
+/* --- INTEGRATED CAROUSEL (Inside Location) --- */
+.integrated-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    /* Occupying almost full section height */
+    height: 75vh;
+    overflow: hidden;
+    margin-top: 0;
+    background: transparent;
+}
+
+/* Side Gradients Restored with Scrim Easing */
+.integrated-carousel-wrapper::before,
+.integrated-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Explicitly hide top/bottom gradients from HTML if they exist */
+.carousel-gradient-top,
+.carousel-gradient-bottom {
+    display: none !important;
+}
+
+.integrated-carousel-wrapper::before {
+    left: 0;
+    /* Scrim Gradient Left */
+    background: linear-gradient(to right,
+            rgb(8, 8, 8) 0%,
+            rgba(8, 8, 8, 0.738) 19%,
+            rgba(8, 8, 8, 0.541) 34%,
+            rgba(8, 8, 8, 0.382) 47%,
+            rgba(8, 8, 8, 0.278) 56.5%,
+            rgba(8, 8, 8, 0.194) 65%,
+            rgba(8, 8, 8, 0.126) 73%,
+            rgba(8, 8, 8, 0.075) 80.2%,
+            rgba(8, 8, 8, 0.042) 86.1%,
+            rgba(8, 8, 8, 0.021) 91%,
+            rgba(8, 8, 8, 0.008) 95.2%,
+            rgba(8, 8, 8, 0.002) 98.2%,
+            rgba(8, 8, 8, 0) 100%);
+}
+
+.integrated-carousel-wrapper::after {
+    right: 0;
+    /* Scrim Gradient Right */
+    background: linear-gradient(to left,
+            rgb(8, 8, 8) 0%,
+            rgba(8, 8, 8, 0.738) 19%,
+            rgba(8, 8, 8, 0.541) 34%,
+            rgba(8, 8, 8, 0.382) 47%,
+            rgba(8, 8, 8, 0.278) 56.5%,
+            rgba(8, 8, 8, 0.194) 65%,
+            rgba(8, 8, 8, 0.126) 73%,
+            rgba(8, 8, 8, 0.075) 80.2%,
+            rgba(8, 8, 8, 0.042) 86.1%,
+            rgba(8, 8, 8, 0.021) 91%,
+            rgba(8, 8, 8, 0.008) 95.2%,
+            rgba(8, 8, 8, 0.002) 98.2%,
+            rgba(8, 8, 8, 0) 100%);
+}
+
+.integrated-track {
+    display: flex;
+    width: max-content;
+    /* Adapts to content */
+    height: 100%;
+    gap: 3rem;
+    /* Clear editorial gap */
+    padding: 2rem 0;
+    /* Space for shadows/hover lift */
+    animation: scroll-loop 120s linear infinite;
+    /* Slow loop */
+    will-change: transform;
+}
+
+/* Pause on hover ONLY when touching a specific card */
+.integrated-track:has(.carousel-card:hover) {
+    animation-play-state: paused;
+}
+
+/* Vertical Editorial Cards - Proportional */
+.carousel-card {
+    position: relative;
+    /* Height-based sizing to fill the taller section */
+    height: 75%;
+    /* Relative to wrapper height */
+    width: auto;
+    /* Width auto-calculates from aspect-ratio */
+    aspect-ratio: 3 / 4;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    /* Cover fills container, may crop edges but no black bars */
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0.95;
+    filter: saturate(90%);
+}
+
+/* Hover Lift & Zoom */
+.carousel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-color: rgba(197, 160, 101, 0.3);
+    /* Slight gold hint on hover */
+    z-index: 10;
+}
+
+.carousel-card:hover img {
+    transform: scale(1.05);
+    /* Zoom */
+    opacity: 1;
+    filter: saturate(100%);
+}
+
+/* Label Reveal Overlay */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.2rem;
+
+    /* Semi-opaque block style */
+    background: rgba(15, 15, 15, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Reveal Animation */
+    transform: translateY(100%);
+    /* Hidden */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.carousel-card:hover .card-overlay {
+    transform: translateY(0);
+    /* Reveal */
+}
+
+.card-overlay span {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e5e5e5;
+}
+
+/* No underline needed for this minimal style */
+.card-overlay span::after {
+    display: none;
+}
+
+
+@keyframes scroll-loop {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- LIGHTBOX MODAL --- */
+.carousel-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid rgba(197, 169, 107, 0.3);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-modal.show .modal-content {
+    transform: scale(1);
+}
+
+#caption {
+    margin-top: 1.5rem;
+    color: var(--color-cta-gold);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.close-modal {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    color: var(--color-text-mist);
+    font-size: 3rem;
+    font-weight: 200;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--color-cta-gold);
+    transform: rotate(90deg);
+}
+
+/* NAVIGATION ARROWS */
+.prev-slide,
+.next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 1rem;
+    margin-top: -30px;
+    color: var(--color-text-mist);
+    font-weight: 300;
+    font-size: 3rem;
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 10010;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-slide {
+    right: 2rem;
+}
+
+.prev-slide {
+    left: 2rem;
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+    color: var(--color-cta-gold);
+    background: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* --- ACTIVE PHASE HIGHLIGHT (Fase de Cimentación) --- 
+   Concept: Alive, breathing, present.
+   Targeting Milestone 4 specifically (Fase de Cimentación).
+*/
+/* --- ACTIVE PHASE HIGHLIGHT (Fase de Cimentación) --- 
+   Concept: Alive, breathing, present.
+   Targeting Milestone 4 specifically (Fase de Cimentación).
+*/
+[data-milestone="4"] .timeline-icon-box {
+    position: relative;
+    transition: box-shadow 1.5s ease, border-color 1.5s ease;
+}
+
+/* State: GLOW ACTIVE (Triggered by JS when fully visible) */
+[data-milestone="4"] .timeline-icon-box.glow-active {
+    /* Static Golden Glow - Intense but fixed */
+    box-shadow: 0 0 50px rgba(197, 169, 107, 0.6);
+    border-color: var(--color-cta-gold);
+}
+
+/* Golden Halo Aura using pseudo-element */
+[data-milestone="4"] .timeline-icon-box::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 169, 107, 0.35) 0%, rgba(197, 169, 107, 0) 70%);
+    z-index: -1;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 1.5s ease;
+}
+
+[data-milestone="4"] .timeline-icon-box.glow-active::after {
+    opacity: 1;
+    /* Reveal on active */
+}
+
+/* Subtle Text Glow for the Active Title */
+[data-milestone="4"] .timeline-text h3 {
+    text-shadow: 0 0 20px rgba(197, 169, 107, 0.3);
+    color: var(--color-cta-gold);
+}
+
+/* Remove black box background for Milestone 4 to allow glow to flow freely */
+[data-milestone="4"] .timeline-text {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* =========================================
+   NEW NAVIGATION & MODAL SYSTEM (Step 94)
+   ========================================= */
+
+/* --- TOP NAVIGATION (Architectural Anchor) --- */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    /* Allow click-through on empty areas */
+    transition: background 0.5s ease;
+}
+
+#top-bar>* {
+    pointer-events: auto;
+    /* Re-enable clicks on elements */
+}
+
+/* Optional: Slight dark gradient for readability on scroll */
+/* Clean, uniform background (transparent) - User requested NO BAR */
+#top-bar.scrolled {
+    background: transparent;
+    box-shadow: none;
+    padding-top: 2rem;
+    /* Keep original padding */
+    padding-bottom: 2rem;
+}
+
+/* Background blur removed - modal is layered above content */
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.25em;
+    color: var(--color-base-paper);
+    text-transform: uppercase;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btn-top-dossier {
+    background: rgba(16, 18, 18, 0.4);
+    border: 1px solid rgba(197, 169, 107, 0.4);
+    color: var(--color-base-paper);
+    padding: 0.6rem 1.2rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+
+.btn-top-dossier:hover {
+    border-color: var(--color-cta-gold);
+    color: var(--color-cta-gold);
+    background: rgba(197, 169, 107, 0.1);
+}
+
+.menu-trigger {
+    background: none;
+    border: none;
+    color: var(--color-base-paper);
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.menu-trigger:hover {
+    color: var(--color-cta-gold);
+    transform: scale(1.05);
+}
+
+/* --- RITUAL MENU OVERLAY --- */
+#ritual-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-base-obsidian);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#ritual-menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ritual-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ritual-nav a {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-text-mist);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+}
+
+.ritual-nav a:hover {
+    color: var(--color-cta-gold);
+    transform: translateY(0) scale(1.05);
+}
+
+#ritual-menu-overlay.active .ritual-nav a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delay for menu items */
+#ritual-menu-overlay.active .ritual-nav a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(5) {
+    transition-delay: 0.3s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(6) {
+    transition-delay: 0.35s;
+}
+
+#ritual-menu-overlay.active .ritual-nav a:nth-child(7) {
+    transition-delay: 0.4s;
+}
+
+.close-ritual {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    font-family: var(--font-display);
+    color: var(--color-text-mist);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2001;
+}
+
+.close-ritual:hover {
+    color: var(--color-cta-gold);
+}
+
+/* ================================================
+   DOSSIER MODAL - REBUILT FROM SCRATCH
+   Clean, simple, guaranteed layering
+   ================================================ */
+
+/* Base: Hidden by default */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10000;
+    /* Flexbox for proper centering with overflow handling */
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 3rem 1rem;
+}
+
+/* Active: Visible - uses flex instead of block */
+.modal-overlay.is-open {
+    display: flex;
+}
+
+/* Backdrop: Dark layer behind modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1;
+}
+
+/* Modal box: Centered via flexbox, scrollable content */
+.modal-box {
+    position: relative;
+    margin: auto;
+    background: #141616;
+    padding: 2.5rem 3rem;
+    width: 90%;
+    max-width: 580px;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid rgba(197, 169, 107, 0.15);
+    border-radius: 4px;
+    z-index: 10;
+}
+
+/* Close button */
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--color-text-mist);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+}
+
+.modal-close:hover {
+    color: var(--color-cta-gold);
+}
+
+/* Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.modal-header h3 {
+    font-family: var(--font-display);
+    color: var(--color-cta-gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.modal-header p {
+    color: var(--color-text-mist);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+/* Form fields */
+.modal-field {
+    margin-bottom: 1rem;
+}
+
+.modal-field label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--color-text-mist);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.modal-field input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-base-paper);
+    padding: 0.75rem 0.5rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.modal-field input:focus {
+    outline: none;
+    border-bottom-color: var(--color-cta-gold);
+    background: rgba(197, 169, 107, 0.05);
+    /* Subtle active state */
+}
+
+.field-optional {
+    font-size: 0.65rem;
+    opacity: 0.5;
+    margin-left: 0.3rem;
+    font-style: italic;
+    text-transform: none;
+}
+
+.modal-submit {
+    width: 100%;
+    background: var(--color-cta-gold);
+    color: #101212;
+    border: none;
+    padding: 1rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.modal-submit:hover {
+    background: #e6c68b;
+}
+
+.modal-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Success state */
+.success-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--color-cta-gold);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.success-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-mist);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* --- GOVERNANCE PILLAR (Glass Card) --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(197, 169, 107, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 3rem 2rem;
+    border-radius: 2px;
+    max-width: 600px;
+    margin: 4rem auto 0;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(197, 169, 107, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Top Gold Accent */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--color-cta-gold);
+    box-shadow: 0 0 15px rgba(197, 169, 107, 0.6);
+}
+
+/* --- GOVERNANCE INTERACTION (Refined) --- */
+.governance-pillar {
+    cursor: pointer;
+    overflow: hidden;
+    width: fit-content;
+    padding: 1.5rem 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pillar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.governance-title {
+    margin: 0;
+    color: var(--color-cta-gold);
+    transition: color 0.3s ease;
+}
+
+.governance-arrow {
+    margin-top: 0.8rem;
+    color: var(--color-text-mist);
+    opacity: 0.5;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    animation: arrowFloat 3s infinite ease-in-out;
+}
+
+@keyframes arrowFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+.governance-pillar.active .governance-arrow {
+    transform: rotate(180deg);
+    opacity: 1;
+    animation: none;
+}
+
+.governance-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    /* Removed margin-top transition to avoid jump */
+    transition: max-height 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+.content-wrapper {
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+}
+
+.governance-pillar.active .governance-content {
+    max-height: 600px;
+    opacity: 1;
+}
+
+/* --- MANIFESTO MODAL --- */
+.manifesto-modal-box {
+    max-width: 900px;
+    width: 95%;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    padding: 3rem 4rem;
+}
+
+@media (max-width: 768px) {
+    .manifesto-modal-box {
+        padding: 2rem;
+    }
+}
+
+.manifesto-modal-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.manifesto-modal-box::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.manifesto-modal-box::-webkit-scrollbar-thumb {
+    background: rgba(197, 169, 107, 0.3);
+    border-radius: 3px;
+}
+
+.manifesto-full-content p {
+    color: var(--color-text-mist);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.btn-text-only:hover {
+    color: var(--color-cta-gold) !important;
+}
+
+.arrow-float {
+    animation: arrowFloat 3s infinite ease-in-out;
+}
+
+/* ================================================
+   MASTER PLAN HOTSPOTS - REBUILT FROM SCRATCH
+   ================================================ */
+
+/* Layer positioned relative to the IMAGE STACK */
+.hotspots-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.master-image-stack {
+    position: relative;
+    width: 100%;
+    height: auto;
+    /* Limit height to ensure button visibility */
+    max-height: 75vh;
+    display: flex;
+    justify-content: center;
+    /* Maintain aspect ratio container */
+    margin-bottom: 0;
+}
+
+/* Ensure hotspots scale properly inside */
+.master-image-stack .master-bg-img {
+    position: relative;
+    /* Image drives the container size */
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0;
+}
+
+/* Individual Hotspot */
+.mp-hotspot {
+    position: absolute;
+    width: 76px;
+    /* Reduced to ~70% of original 108px */
+    height: 76px;
+    transform: translate(-50%, -50%);
+
+    /* Visual Style - Translucent Circle */
+    background: rgba(20, 20, 20, 0.6);
+    /* Slightly more opaque to fix "transparent" feel during anim */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid var(--color-cta-gold);
+    border-radius: 50%;
+
+    /* Rendering Fixes */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate(-50%, -50%) translateZ(0);
+    /* Force GPU */
+
+    /* Interaction */
+    cursor: pointer;
+    pointer-events: auto;
+    /* THIS element IS interactive */
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Positioning - Based on data-hotspot attribute */
+.mp-hotspot[data-hotspot="1"] {
+    left: 30%;
+    top: 52%;
+}
+
+.mp-hotspot[data-hotspot="2"] {
+    left: 45%;
+    top: 70%;
+}
+
+.mp-hotspot[data-hotspot="3"] {
+    left: 50%;
+    top: 32%;
+}
+
+/* Hotspot Number */
+.mp-hotspot-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    /* Adjusted for smaller circle */
+    color: var(--color-cta-gold);
+    font-weight: 500;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Hotspot Label (Tooltip) */
+.mp-hotspot-label {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    /* Above the circle */
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+
+    /* Visual */
+    background: rgba(12, 14, 14, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(197, 169, 107, 0.5);
+    border-radius: 6px;
+    padding: 12px 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+
+    /* Typography */
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--color-cta-gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    /* Smooth animation */
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+/* Label Arrow */
+.mp-hotspot-label::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: rgba(197, 169, 107, 0.5);
+}
+
+/* ==========================================
+   HOVER STATE - THE CRITICAL PART
+   ========================================== */
+.mp-hotspot:hover {
+    background: rgba(35, 35, 35, 0.65);
+    box-shadow: 0 0 30px rgba(197, 169, 107, 0.5);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.mp-hotspot:hover .mp-hotspot-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    /* Slide into place */
+}
+
+/* Focus state for keyboard navigation (Tab only, not click) */
+.mp-hotspot:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-cta-gold), 0 0 30px rgba(197, 169, 107, 0.5);
+}
+
+.mp-hotspot:focus-visible .mp-hotspot-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Active state removed entirely to prevent "stuck" effect on click */
+
+/* Tooltip persistence on click REMOVED as requested */
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hotspots-layer {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .mp-hotspot {
+        width: 60px;
+        height: 60px;
+    }
+
+    .mp-hotspot-num {
+        font-size: 1.5rem;
+    }
+
+    .mp-hotspot-label {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+/* --- MANIFESTO MODAL SPECIFIC --- */
+#manifesto-modal .modal-box,
+.manifesto-modal-box {
+    width: 85vw !important;
+    /* Panoramic 16:9 feel */
+    max-width: 1400px !important;
+    height: auto;
+    max-height: 90vh;
+    /* Fit within viewport */
+    padding: 4rem 6rem;
+    /* Generous padding */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Use Columns for better readability on wide screen without scrolling */
+#manifesto-modal .manifesto-full-content {
+    column-count: 2;
+    column-gap: 5rem;
+    column-rule: 1px solid rgba(197, 169, 107, 0.2);
+    /* Subtle divider */
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+#manifesto-modal .manifesto-full-content p {
+    margin-bottom: 2rem;
+    break-inside: avoid;
+    /* Prevent paragraph splitting */
+}
+
+@media (max-width: 1024px) {
+    #manifesto-modal .modal-box {
+        width: 95vw !important;
+        padding: 2rem;
+        max-height: 85vh;
+    }
+
+    #manifesto-modal .manifesto-full-content {
+        column-count: 1;
+        /* Stack on mobile/tablet */
+        column-rule: none;
+    }
+}
+
+/* --- VIDEO MODAL --- */
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+    /* Toggled via JS */
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90vw;
+    height: 85vh;
+    background: #000;
+    border: 1px solid rgba(197, 169, 107, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+.video-placeholder-box {
+    color: var(--color-text-mist);
+    font-family: var(--font-display);
+    letter-spacing: 0.2em;
+    font-size: 1.5rem;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: 3rem;
+    text-transform: uppercase;
+}
+
+.video-close-btn {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.video-close-btn:hover {
+    color: var(--color-cta-gold);
+}
+
+@media (max-width: 1024px) {
+    .video-close-btn {
+        top: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 10;
+    }
+}
+
+/* --- TIMELINE REFINEMENTS --- */
+.timeline-icon-box.glow-active {
+    border-color: var(--color-cta-gold);
+    box-shadow: 0 0 30px rgba(197, 169, 107, 0.4), inset 0 0 20px rgba(197, 169, 107, 0.2);
+}
+
+/* Fix for abrupt hover on Milestone 4 (Cimentación) */
+[data-milestone="4"] .timeline-icon-box {
+    transition: transform 1s ease, box-shadow 1s ease, border-color 1s ease !important;
+}

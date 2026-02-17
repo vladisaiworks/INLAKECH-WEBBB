@@ -1,0 +1,124 @@
+:root {
+    /* ============================================
+       ILAKECH DESIGN TOKENS - FLUID SYSTEM
+       Breakpoints: 375px → 768px → 1366px → 1920px
+       All values use clamp() for seamless scaling
+    ============================================ */
+
+    /* --- COLOR PALETTE --- */
+    /* Base Backgrounds */
+    --color-base-paper: #F5F0EB;
+    --color-base-jungle: #0D1F16;
+    --color-base-obsidian: #080808;
+
+    /* Surface & Overlays */
+    --color-surface-limestone: rgba(232, 228, 221, 0.9);
+    --color-overlay-dark: rgba(0, 0, 0, 0.4);
+
+    /* Text */
+    --color-text-charcoal: #2C2C2C;
+    --color-text-mist: #E0E0E0;
+    --color-text-muted: #888888;
+
+    /* Accents */
+    --color-accent-amber: #D4A373;
+    --color-accent-terroid: #A85E48;
+
+    /* CTA */
+    --color-cta-gold: #C5A065;
+    --color-cta-hover: #DEC595;
+
+    /* --- TYPOGRAPHY (FLUID) --- */
+    /* Fonts */
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Type Scale - clamp(min, preferred, max) */
+    /* H1: 2rem (mobile) → 4.5rem (desktop) */
+    --text-h1: clamp(2rem, 1rem + 4vw, 4.5rem);
+    /* H2: 1.75rem → 3rem */
+    --text-h2: clamp(1.75rem, 1rem + 3vw, 3rem);
+    /* H3: 1.25rem → 2rem */
+    --text-h3: clamp(1.25rem, 0.8rem + 1.5vw, 2rem);
+    /* H4: 1.1rem → 1.5rem */
+    --text-h4: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+    /* Body: 0.95rem → 1.125rem */
+    --text-body: clamp(0.95rem, 0.9rem + 0.25vw, 1.125rem);
+    /* Small: 0.8rem → 0.95rem */
+    --text-small: clamp(0.8rem, 0.75rem + 0.2vw, 0.95rem);
+    /* Caption: fixed for consistency */
+    --text-caption: 0.875rem;
+
+    /* Line Heights */
+    --lh-tight: 1.1;
+    --lh-heading: 1.2;
+    --lh-body: 1.6;
+    --lh-relaxed: 1.8;
+
+    /* --- SPACING (FLUID) --- */
+    /* XS: 0.5rem → 0.75rem */
+    --space-xs: clamp(0.5rem, 0.4rem + 0.25vw, 0.75rem);
+    /* S: 0.75rem → 1.25rem */
+    --space-s: clamp(0.75rem, 0.5rem + 0.5vw, 1.25rem);
+    /* M: 1.5rem → 2.5rem */
+    --space-m: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+    /* L: 2.5rem → 4rem */
+    --space-l: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+    /* XL: 4rem → 7rem */
+    --space-xl: clamp(4rem, 2rem + 5vw, 7rem);
+    /* XXL: 6rem → 10rem */
+    --space-xxl: clamp(6rem, 3rem + 7vw, 10rem);
+
+    /* --- SECTION SAFE AREAS --- */
+    /* Safe padding prevents content from being cut off */
+    /* Section vertical padding: ensures breathing room */
+    --section-pad-y: clamp(4rem, 3rem + 5vh, 8rem);
+    /* Safe area bottom: ensures last element never touches edge */
+    --safe-area-bottom: clamp(2rem, 1rem + 4vh, 5rem);
+    /* Safe area between sections */
+    --section-gap: clamp(3rem, 2rem + 4vh, 6rem);
+
+    /* --- LAYOUT --- */
+    /* Container max-width: capped for readability */
+    --container-width: min(1200px, 90vw);
+    /* Container padding: fluid gutters */
+    --container-padding: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+    /* Narrow container for text-heavy sections */
+    --container-narrow: min(800px, 85vw);
+    /* Wide container for full-bleed sections */
+    --container-wide: min(1400px, 95vw);
+
+    /* --- COMPONENT SIZES (FLUID) --- */
+    /* Icon sizes */
+    --icon-sm: clamp(1.5rem, 1rem + 1vw, 2rem);
+    --icon-md: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
+    --icon-lg: clamp(3.5rem, 2.5rem + 2vw, 5rem);
+    /* Card padding */
+    --card-padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+    /* Button padding */
+    --btn-padding-x: clamp(1.5rem, 1rem + 1vw, 2.5rem);
+    --btn-padding-y: clamp(0.875rem, 0.7rem + 0.5vw, 1.25rem);
+
+    /* --- DEPTH & EASING --- */
+    --z-back: -1;
+    --z-base: 0;
+    --z-mid: 10;
+    --z-overlay: 50;
+    --z-fixed: 100;
+
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+    /* --- BORDERS --- */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+
+    /* --- BREAKPOINT REFERENCE (for media queries) --- */
+    /* Mobile: 375px */
+    /* Tablet: 768px */
+    /* Laptop: 1366px */
+    /* Desktop: 1440px */
+    /* Large: 1920px */
+}

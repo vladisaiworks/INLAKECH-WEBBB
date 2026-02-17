@@ -1,0 +1,21 @@
+# System & OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Antigravity/AI System Files
+.gemini/
+.gemini_data/
+tmp/
+logs/
+
+# Node modules (if any in future)
+node_modules/
+package-lock.json
+yarn.lock

@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Lak’ech | Digital Sanctuary</title>
+    <meta name="description" content="Co-crea un ecosistema regenerativo en Yucatán. Un legado que respira.">
+
+    <!-- Fonts: Cinzel & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css?v=5">
+
+    <!-- GSAP & Lenis via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+</head>
+
+<body class="theme-dark">
+    <!-- GLOBAL SUNLIGHT: Unified atmospheric light -->
+    <div id="global-sunlight">
+        <div class="sunbeam primary"></div>
+        <div class="sunbeam secondary"></div>
+    </div>
+
+    <!-- TOP BAR: Persistent, Minimal, Architectural -->
+    <div id="header-wrap">
+        <header id="top-bar">
+            <div class="logo-text">In Lak’ech</div>
+            <div class="header-actions">
+                <!-- CTA: 'Solicitar dossier' -->
+
+                <!-- Menu Trigger: Discreet icon -->
+                <button class="menu-trigger" aria-label="Abrir Menú" onclick="toggleRitualMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="menu-icon-svg">
+                        <!-- Minimal parallel lines symbol -->
+                        <path d="M4 9h16M4 15h16" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <!-- GLOBAL WAVE LIGHT: Continuous Ambient Layer -->
+        <div id="global-ambient-light" aria-hidden="true">
+            <div class="light-wave"></div>
+        </div>
+        <!-- SECCIÓN 1: HERO / UMBRAL -->
+        <section id="hero" class="section-padding flex-center"
+            style="height: 100vh; position: relative; overflow: hidden;">
+            <div class="background-layer" style="position: absolute; inset: 0; z-index: -1;">
+                <!-- Placeholder for Hero Image/Video -->
+                <img src="assets/images/IMAGEN_FONDO_HERO.jpeg" alt="Yucatan Jungle"
+                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+                <div
+                    style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--color-base-obsidian) 100%);">
+                </div>
+            </div>
+
+            <div class="container text-center" style="position: relative; z-index: 1;">
+                <h3 class="text-amber" style="margin-bottom: 1.5rem; letter-spacing: 0.3em; font-size: 0.9rem;">In
+                    Lak’ech Eco-Aldea</h3>
+                <h1 style="max-width: 800px; margin: 0 auto 2rem auto;">El despertar de un legado que respira.</h1>
+                <p
+                    style="max-width: 600px; margin: 0 auto 3rem auto; font-size: 1.25rem; color: var(--color-text-mist);">
+                    Co-crea un ecosistema regenerativo en Yucatán, donde la rentabilidad se mide en vida.
+                </p>
+                <div class="cta-wrapper">
+                    <button class="btn-primary" onclick="openVideoModal()">Ver Vídeo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: MANIFIESTO -->
+        <section id="manifesto" class="section-padding theme-obsidian"
+            style="position: relative; overflow: hidden; background-color: var(--color-base-obsidian); z-index: 10;">
+
+            <!-- Background Faces -->
+            <div class="manifesto-bg"
+                style="position: absolute; inset: 0; z-index: 0; opacity: 0; /* Animated */ display: flex; align-items: center; justify-content: center;">
+                <img src="assets/images/rostros png.png" alt="Rostros" class="manifesto-img">
+            </div>
+
+            <div class="container"
+                style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="manifesto-content">
+                    <h2 class="manifesto-stagger"
+                        style="margin-bottom: 2.5rem; opacity: 0; transform: translateY(30px); font-family: var(--font-display); font-size: 2.2rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.3;">
+                        El mundo ha cambiado,<br>la forma de proteger tu legado también.
+                    </h2>
+
+                    <p class="manifesto-stagger text-mist"
+                        style="margin-bottom: 2rem; opacity: 0; transform: translateY(30px); font-size: 1.15rem; line-height: 1.7; text-align: center;">
+                        In Lak’ech nace como una respuesta consciente a un modelo de crecimiento que ha perdido el
+                        equilibrio entre progreso, tierra y vida humana. Es la visión de una eco-aldea diseñada para
+                        volver a habitar desde la cooperación, el respeto por los ciclos naturales y una relación sana
+                        entre bienestar y prosperidad.
+                    </p>
+
+                    <p class="manifesto-stagger text-mist"
+                        style="margin-bottom: 3rem; opacity: 0; transform: translateY(30px); font-size: 1.15rem; line-height: 1.7; text-align: center;">
+                        Nuestro propósito es crear un asentamiento colectivo donde la regeneración del territorio, la
+                        fortaleza de la comunidad y la solidez económica se refuercen mutuamente. Un lugar donde el
+                        valor no se extrae, se cultiva.
+                    </p>
+
+                    <p class="text-gold manifesto-stagger"
+                        style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 3rem; opacity: 0; transform: translateY(30px); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.5; letter-spacing: 0.05em; text-transform: uppercase;">
+                        Donde tu patrimonio<br class="m-br"> no solo se protege,<br>se siembra para las<br class="m-br">
+                        próximas<br class="m-br"> generaciones.
+                    </p>
+
+                    <!-- CTA -->
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: EL DÓNDE / UBICACIÓN -->
+        <section id="location" class="section-padding theme-dark"
+            style="position: relative; overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center;">
+
+            <!-- Background Title (Optional, keeping consistent with design) -->
+            <div style="position: absolute; top: 5%; width: 100%; text-align: center; z-index: 2;">
+                <h3 class="text-amber" style="margin-bottom: 0.5rem;">YUCATÁN</h3>
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">El corazón de un nuevo paradigma.</h2>
+            </div>
+
+            <!-- 3D Scene Container -->
+            <div class="location-scene"
+                style="position: relative; width: 100%; max-width: 1400px; height: 100%; display: flex; align-items: center; justify-content: center;">
+
+                <!-- Parchment Wrapper with Pillars INSIDE -->
+                <div class="parchment-wrapper"
+                    style="position: relative; z-index: 1; transform-style: preserve-3d; perspective: 1000px;">
+                    <img src="assets/images/PERGAMINO BAJA CALIDAD.webp" alt="Mapa Yucatán Pergamino"
+                        class="parchment-img">
+
+                    <!-- Custom Dynamic Map Pin -->
+                    <div class="custom-map-pin">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <span class="map-tooltip">Eco-Aldea In Lak’ech</span>
+                    </div>
+
+                    <!-- Pillars Overlay (NOW RELATIVE TO PARCHMENT) -->
+                    <div class="pillars-overlay">
+
+                        <!-- Pillar 1: Top Left -->
+                        <div class="pillar-box pillar-1">
+                            <h4 class="text-gold">Certeza Jurídica</h4>
+                            <p class="text-mist">Tierra propia en el estado más seguro y con
+                                mayor plusvalía de México.</p>
+                        </div>
+
+                        <!-- Pillar 2: Top Right -->
+                        <div class="pillar-box pillar-2">
+                            <h4 class="text-gold">Conexión de Vanguardia</h4>
+                            <p class="text-mist">A solo 15 minutos de la estación del Tren Maya,
+                                uniendo la paz de la selva con la infraestructura global.</p>
+                        </div>
+
+                        <!-- Pillar 3: Bottom Center -->
+                        <div class="pillar-box pillar-3">
+                            <h4 class="text-gold">Entorno Sagrado</h4>
+                            <p class="text-mist">Ubicación privilegiada en el epicentro de la
+                                cultura maya, rodeado de reservas naturales.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3.5: CULTURAL GALLERY -->
+        <section id="carousel-section"
+            style="background: var(--color-base-obsidian); height: auto; padding: 10vh 0; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 5;">
+
+            <!-- Section Title -->
+            <div class="carousel-title-block" style="text-align: center; margin-bottom: 5vh; width: 100%; z-index: 10;">
+                <h2
+                    style="font-family: var(--font-display); font-size: 3rem; color: var(--color-base-paper); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase;">
+                    La tierra que nos rodea
+                </h2>
+            </div>
+
+            <!-- INTEGRATED CAROUSEL (Cinematic Extension) -->
+            <!-- DESKTOP CAROUSEL (Hidden on Mobile) -->
+            <div class="integrated-carousel-wrapper desktop-only">
+                <!-- Transition Gradients -->
+                <div class="carousel-gradient-top"></div>
+                <div class="carousel-gradient-bottom"></div>
+
+                <div class="integrated-track">
+                    <!-- Loop 1 -->
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Celestún.jpeg', 'Celestún')">
+                        <img src="assets/images/carrusel imagenes landing/Celestún.webp" alt="Celestún" loading="lazy">
+                        <div class="card-overlay"><span>Celestún</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Cenote Yokdzonot.jpeg', 'Cenote Yokdzonot')">
+                        <img src="assets/images/carrusel imagenes landing/Cenote Yokdzonot.webp" alt="Cenote Yokdzonot"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Cenote Yokdzonot</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Chichén Itzá.jpeg', 'Chichén Itzá')">
+                        <img src="assets/images/carrusel imagenes landing/Chichén Itzá.webp" alt="Chichén Itzá"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Chichén Itzá</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Dzibichaltún.jpeg', 'Dzibichaltún')">
+                        <img src="assets/images/carrusel imagenes landing/Dzibichaltún.webp" alt="Dzibichaltún"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Dzibichaltún</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Ek Balam.jpeg', 'Ek Balam')">
+                        <img src="assets/images/carrusel imagenes landing/Ek Balam.webp" alt="Ek Balam" loading="lazy">
+                        <div class="card-overlay"><span>Ek Balam</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/El Cuyo.jpeg', 'El Cuyo')">
+                        <img src="assets/images/carrusel imagenes landing/El Cuyo.webp" alt="El Cuyo" loading="lazy">
+                        <div class="card-overlay"><span>El Cuyo</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Holbox.jpeg', 'Holbox')">
+                        <img src="assets/images/carrusel imagenes landing/Holbox.webp" alt="Holbox" loading="lazy">
+                        <div class="card-overlay"><span>Holbox</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Izamal.jpeg', 'Izamal')">
+                        <img src="assets/images/carrusel imagenes landing/Izamal.webp" alt="Izamal" loading="lazy">
+                        <div class="card-overlay"><span>Izamal</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Mérida.jpeg', 'Mérida')">
+                        <img src="assets/images/carrusel imagenes landing/Mérida.webp" alt="Mérida" loading="lazy">
+                        <div class="card-overlay"><span>Mérida</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Playa del Carmen.jpeg', 'Playa del Carmen')">
+                        <img src="assets/images/carrusel imagenes landing/Playa del Carmen.webp" alt="Playa del Carmen"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Playa del Carmen</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Río Lagartos.jpeg', 'Río Lagartos')">
+                        <img src="assets/images/carrusel imagenes landing/Río Lagartos.webp" alt="Río Lagartos"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Río Lagartos</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Tulum.jpeg', 'Tulum')">
+                        <img src="assets/images/carrusel imagenes landing/Tulum.webp" alt="Tulum" loading="lazy">
+                        <div class="card-overlay"><span>Tulum</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Uxmal.jpeg', 'Uxmal')">
+                        <img src="assets/images/carrusel imagenes landing/Uxmal.webp" alt="Uxmal" loading="lazy">
+                        <div class="card-overlay"><span>Uxmal</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Valladolid.jpeg', 'Valladolid')">
+                        <img src="assets/images/carrusel imagenes landing/Valladolid.webp" alt="Valladolid"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Valladolid</span></div>
+                    </div>
+
+                    <!-- Loop 2 (Duplicate) -->
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Celestún.jpeg', 'Celestún')">
+                        <img src="assets/images/carrusel imagenes landing/Celestún.webp" alt="Celestún" loading="lazy">
+                        <div class="card-overlay"><span>Celestún</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Cenote Yokdzonot.jpeg', 'Cenote Yokdzonot')">
+                        <img src="assets/images/carrusel imagenes landing/Cenote Yokdzonot.webp" alt="Cenote Yokdzonot"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Cenote Yokdzonot</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Chichén Itzá.jpeg', 'Chichén Itzá')">
+                        <img src="assets/images/carrusel imagenes landing/Chichén Itzá.webp" alt="Chichén Itzá"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Chichén Itzá</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Dzibichaltún.jpeg', 'Dzibichaltún')">
+                        <img src="assets/images/carrusel imagenes landing/Dzibichaltún.webp" alt="Dzibichaltún"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Dzibichaltún</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Ek Balam.jpeg', 'Ek Balam')">
+                        <img src="assets/images/carrusel imagenes landing/Ek Balam.webp" alt="Ek Balam" loading="lazy">
+                        <div class="card-overlay"><span>Ek Balam</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/El Cuyo.jpeg', 'El Cuyo')">
+                        <img src="assets/images/carrusel imagenes landing/El Cuyo.webp" alt="El Cuyo" loading="lazy">
+                        <div class="card-overlay"><span>El Cuyo</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Holbox.jpeg', 'Holbox')">
+                        <img src="assets/images/carrusel imagenes landing/Holbox.webp" alt="Holbox" loading="lazy">
+                        <div class="card-overlay"><span>Holbox</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Izamal.jpeg', 'Izamal')">
+                        <img src="assets/images/carrusel imagenes landing/Izamal.webp" alt="Izamal" loading="lazy">
+                        <div class="card-overlay"><span>Izamal</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Mérida.jpeg', 'Mérida')">
+                        <img src="assets/images/carrusel imagenes landing/Mérida.webp" alt="Mérida" loading="lazy">
+                        <div class="card-overlay"><span>Mérida</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Playa del Carmen.jpeg', 'Playa del Carmen')">
+                        <img src="assets/images/carrusel imagenes landing/Playa del Carmen.webp" alt="Playa del Carmen"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Playa del Carmen</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Río Lagartos.jpeg', 'Río Lagartos')">
+                        <img src="assets/images/carrusel imagenes landing/Río Lagartos.webp" alt="Río Lagartos"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Río Lagartos</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Tulum.jpeg', 'Tulum')">
+                        <img src="assets/images/carrusel imagenes landing/Tulum.webp" alt="Tulum" loading="lazy">
+                        <div class="card-overlay"><span>Tulum</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Uxmal.jpeg', 'Uxmal')">
+                        <img src="assets/images/carrusel imagenes landing/Uxmal.webp" alt="Uxmal" loading="lazy">
+                        <div class="card-overlay"><span>Uxmal</span></div>
+                    </div>
+                    <div class="carousel-card"
+                        onclick="openModal('assets/images/carrusel imagenes al abrir/Valladolid.jpeg', 'Valladolid')">
+                        <img src="assets/images/carrusel imagenes landing/Valladolid.webp" alt="Valladolid"
+                            loading="lazy">
+                        <div class="card-overlay"><span>Valladolid</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW MOBILE CAROUSEL (Visible only on mobile) -->
+            <div class="mobile-carousel-wrapper mobile-only">
+
+                <div class="mobile-carousel-track-container">
+                    <ul class="mobile-carousel-track">
+                        <!-- Slides will be populated/cloned by JS for infinite loop, but here is the base list -->
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Celestún.webp" alt="Celestún">
+                            </div>
+                            <h3 class="mobile-slide-title">Celestún</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Cenote Yokdzonot.webp"
+                                    alt="Cenote Yokdzonot">
+                            </div>
+                            <h3 class="mobile-slide-title">Cenote Yokdzonot</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Chichén Itzá.webp" alt="Chichén Itzá">
+                            </div>
+                            <h3 class="mobile-slide-title">Chichén Itzá</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Dzibichaltún.webp" alt="Dzibichaltún">
+                            </div>
+                            <h3 class="mobile-slide-title">Dzibichaltún</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Ek Balam.webp" alt="Ek Balam">
+                            </div>
+                            <h3 class="mobile-slide-title">Ek Balam</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/El Cuyo.webp" alt="El Cuyo">
+                            </div>
+                            <h3 class="mobile-slide-title">El Cuyo</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Holbox.webp" alt="Holbox">
+                            </div>
+                            <h3 class="mobile-slide-title">Holbox</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Izamal.webp" alt="Izamal">
+                            </div>
+                            <h3 class="mobile-slide-title">Izamal</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Mérida.webp" alt="Mérida">
+                            </div>
+                            <h3 class="mobile-slide-title">Mérida</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Playa del Carmen.webp"
+                                    alt="Playa del Carmen">
+                            </div>
+                            <h3 class="mobile-slide-title">Playa del Carmen</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Río Lagartos.webp" alt="Río Lagartos">
+                            </div>
+                            <h3 class="mobile-slide-title">Río Lagartos</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Tulum.webp" alt="Tulum">
+                            </div>
+                            <h3 class="mobile-slide-title">Tulum</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Uxmal.webp" alt="Uxmal">
+                            </div>
+                            <h3 class="mobile-slide-title">Uxmal</h3>
+                        </li>
+                        <li class="mobile-carousel-slide">
+                            <div class="mobile-img-container">
+                                <img src="assets/images/carrusel imagenes landing/Valladolid.webp" alt="Valladolid">
+                            </div>
+                            <h3 class="mobile-slide-title">Valladolid</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- SECCIÓN 4: EL QUÉ / MASTER PLAN (New Design) -->
+        <!-- SECCIÓN 4: MASTER PLAN (Cinematic Full-Background Edition) -->
+        <section id="master-plan" class="theme-obsidian">
+
+            <!-- 1. Cinematic Background -->
+            <!-- 1. Left Column: Image + Hotspots + Button -->
+            <div class="master-bg-wrapper">
+
+                <!-- Stack Image + Hotspots for perfect alignment -->
+                <div class="master-image-stack">
+                    <img src="assets/images/MASTER PLAN BAJA CALIDAD.webp" alt="Master Plan Orgánico"
+                        class="master-bg-img">
+
+                    <!-- Hotspots Layer (Absolute over relative stack) -->
+                    <div class="hotspots-layer">
+                        <!-- Hotspot 1 -->
+                        <div class="mp-hotspot" data-hotspot="1">
+                            <span class="mp-hotspot-num">1</span>
+                            <div class="mp-hotspot-label">Área de renta turística</div>
+                        </div>
+
+                        <!-- Hotspot 2 -->
+                        <div class="mp-hotspot" data-hotspot="2">
+                            <span class="mp-hotspot-num">2</span>
+                            <div class="mp-hotspot-label">Área privada fundadores</div>
+                        </div>
+
+                        <!-- Hotspot 3 -->
+                        <div class="mp-hotspot" data-hotspot="3">
+                            <span class="mp-hotspot-num">3</span>
+                            <div class="mp-hotspot-label">Parque temático In Lak’ech</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Button (Below Image Stack) -->
+                <div class="master-cta-container">
+                    <button class="btn-primary" onclick="openMasterPlanLightbox()"
+                        style="font-size: 1.2rem; padding: 1.5rem 3rem;">EXPLORAR MASTER PLAN</button>
+                </div>
+            </div>
+
+            <!-- 3. READING MODE OVERLAY (Covers image + hotspots when hovering text) -->
+            <div class="reading-overlay"></div>
+
+
+            <!-- 3. Content Container (Right Aligned) -->
+            <div class="master-content-container">
+
+
+
+                <!-- Text Content -->
+                <div class="plan-content reveal-right">
+                    <span
+                        style="font-family: var(--font-display); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; display: block; margin-bottom: 1rem; border-left: 2px solid var(--color-cta-gold); padding-left: 1rem;">
+                        | Master Plan
+                    </span>
+
+                    <h2 style="margin-bottom: 2rem; font-size: 3.5rem; line-height: 1.1;">
+                        ARQUITECTURA<br>
+                        <span
+                            style="font-family: var(--font-display); font-weight: 400; font-size: 2.5rem; color: var(--color-text-muted);">de
+                            la armonía.</span>
+                    </h2>
+
+                    <p class="text-mist"
+                        style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 3rem; max-width: 95%;">
+                        31 hectáreas organizadas bajo un plan maestro donde la geometría, el ritmo y el equilibrio
+                        natural guían una arquitectura integrada con la vida.
+                    </p>
+
+                    <!-- Accordion Pillars -->
+                    <div class="accordion-stack" style="border-top: 1px solid rgba(197, 169, 107, 0.3);">
+
+                        <!-- Item 1: PLUSVALÍA ECOLÓGICA -->
+                        <div class="accordion-item active">
+                            <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="true"
+                                aria-controls="acc-1">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span class="acc-num"
+                                        style="color: var(--color-cta-gold); font-family: var(--font-display);">01.</span>
+                                    <span class="acc-title"
+                                        style="color: var(--color-base-paper); font-family: var(--font-display); letter-spacing: 0.05em;">PLUSVALÍA
+                                        ECOLÓGICA</span>
+                                </div>
+                                <span class="acc-arrow"
+                                    style="color: var(--color-cta-gold); transition: transform 0.3s; transform: rotate(0deg);">
+                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none">
+                                        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div id="acc-1" class="accordion-body" role="region"
+                                style="max-height: 200px; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);">
+                                <div class="acc-content" style="padding: 1rem 0 2rem 2.5rem;">
+                                    <p class="text-mist" style="font-size: 0.95rem; line-height: 1.6;">La selva
+                                        permanece intacta como valor esencial, creando una escasez natural que protege
+                                        el territorio y eleva su valor con el paso del tiempo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: AUTONOMÍA VIVA -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false"
+                                aria-controls="acc-2">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span class="acc-num"
+                                        style="color: var(--color-cta-gold); font-family: var(--font-display);">02.</span>
+                                    <span class="acc-title"
+                                        style="color: var(--color-base-paper); font-family: var(--font-display); letter-spacing: 0.05em;">AUTONOMÍA
+                                        VIVA</span>
+                                </div>
+                                <span class="acc-arrow"
+                                    style="color: var(--color-cta-gold); transition: transform 0.3s; transform: rotate(-90deg);">
+                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none">
+                                        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div id="acc-2" class="accordion-body" role="region"
+                                style="max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);">
+                                <div class="acc-content" style="padding: 1rem 0 2rem 2.5rem;">
+                                    <p class="text-mist" style="font-size: 0.95rem; line-height: 1.6;">Sistemas propios
+                                        de agua y energía permiten que el proyecto funcione con resiliencia, reduciendo
+                                        dependencias y asegurando su continuidad a largo plazo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: ECOSISTEMA QUE GENERA -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false"
+                                aria-controls="acc-3">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span class="acc-num"
+                                        style="color: var(--color-cta-gold); font-family: var(--font-display);">03.</span>
+                                    <span class="acc-title"
+                                        style="color: var(--color-base-paper); font-family: var(--font-display); letter-spacing: 0.05em;">ECOSISTEMA
+                                        QUE GENERA</span>
+                                </div>
+                                <span class="acc-arrow"
+                                    style="color: var(--color-cta-gold); transition: transform 0.3s; transform: rotate(-90deg);">
+                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none">
+                                        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div id="acc-3" class="accordion-body" role="region"
+                                style="max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);">
+                                <div class="acc-content" style="padding: 1rem 0 2rem 2.5rem;">
+                                    <p class="text-mist" style="font-size: 0.95rem; line-height: 1.6;">Cultura,
+                                        bienestar y experiencia conviven en un diseño que atrae vida, actividad y valor
+                                        real, transformando la tierra en un organismo productivo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: DE LA VISIÓN A LA MATERIA (Timeline Design) -->
+        <section id="progress" class="section-padding theme-dark" style="overflow: hidden;">
+            <div class="container" style="position: relative;">
+
+                <!-- Background Decoration (Optional subtle topographic feel) -->
+                <div
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.05; pointer-events: none; background-image: url('assets/images/MAPA YUKATAN PERGAMINO.png'); background-size: cover; mix-blend-mode: overlay;">
+                </div>
+
+                <!-- Section Title (Animated on scroll) -->
+                <div class="text-center progress-title" style="margin-bottom: 5rem;">
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem);">De la visión a la materia</h2>
+                </div>
+
+                <div class="timeline-container">
+
+                    <!-- SVG: Single path with pure Bezier curves (no L commands, no vertices) -->
+                    <svg id="timelineSvg" class="timeline-svg" preserveAspectRatio="none">
+                        <defs>
+                            <!-- Mask for exclusion zones (text protection) -->
+                            <mask id="textProtectionMask">
+                                <rect width="100%" height="100%" fill="white" />
+                                <!-- Exclusion rectangles will be added dynamically via JS -->
+                            </mask>
+                        </defs>
+                        <!-- The golden line - pure cubic Bezier, no L commands -->
+                        <path id="timelinePath" class="timeline-path" fill="none" stroke="#C5A96B" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" mask="url(#textProtectionMask)" d="" />
+                    </svg>
+
+                    <!-- MILESTONE 1: LA TIERRA -->
+                    <div class="timeline-block block-left timeline-milestone" data-milestone="1" style="top: 0%;">
+                        <div class="timeline-content-packet">
+                            <div class="timeline-icon-box">
+                                <!-- Anchor point for path calculation -->
+                                <div class="line-anchor" data-anchor="1"></div>
+                                <img src="assets/images/ICONOS HITOS/ICONO 1.png" alt="La Tierra" class="timeline-icon">
+                            </div>
+                            <div class="timeline-text">
+                                <h3 class="text-gold">31 HECTÁREAS ASEGURADAS</h3>
+                                <p class="text-mist">Tierra comunitaria con raíz y presencia en un lugar privilegiado.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MILESTONE 2: LA VISIÓN -->
+                    <div class="timeline-block block-right timeline-milestone" data-milestone="2" style="top: 22%;">
+                        <div class="timeline-content-packet">
+                            <div class="timeline-icon-box">
+                                <div class="line-anchor" data-anchor="2"></div>
+                                <img src="assets/images/ICONOS HITOS/ICONO 2.png" alt="La Visión" class="timeline-icon">
+                            </div>
+                            <div class="timeline-text">
+                                <h3 class="text-gold">LA VISIÓN YA TIENE FORMA</h3>
+                                <p class="text-mist">Plan maestro y diseño arquitectónico definidos como traducción
+                                    directa de la filosofía del proyecto.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MILESTONE 3: TODO PREPARADO -->
+                    <div class="timeline-block block-left timeline-milestone" data-milestone="3" style="top: 44%;">
+                        <div class="timeline-content-packet">
+                            <div class="timeline-icon-box">
+                                <div class="line-anchor" data-anchor="3"></div>
+                                <img src="assets/images/ICONOS HITOS/ICONO 3.png" alt="Todo Preparado"
+                                    class="timeline-icon">
+                            </div>
+                            <div class="timeline-text">
+                                <h3 class="text-gold">TODO PREPARADO</h3>
+                                <p class="text-mist">Equipo técnico listo, maquinaria identificada y los recursos
+                                    necesarios previstos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MILESTONE 4: FASE DE CIMENTACIÓN -->
+                    <div class="timeline-block block-center timeline-milestone" data-milestone="4" style="top: 90%;">
+                        <div class="timeline-content-packet">
+                            <div class="timeline-icon-box">
+                                <div class="line-anchor" data-anchor="4"></div>
+                                <img src="assets/images/ICONOS HITOS/ICONO 4.png" alt="Cimentación"
+                                    class="timeline-icon">
+                            </div>
+                            <div class="timeline-text">
+                                <h3 class="text-gold">FASE ACTUAL · CIMENTACIÓN</h3>
+                                <p class="text-mist">Activa la construcción y los servicios. Se abre la participación a
+                                    socios que quieran formar parte de la experiencia.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: TRES PUERTAS (Participación) -->
+        <section id="participation" class="section-padding theme-obsidian">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: 1rem;">Tres puertas, un mismo propósito.</h2>
+                <p class="text-center text-mist"
+                    style="margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    No todas las personas se acercan a In Lak’ech desde el mismo lugar. Elige tu forma de sostener el
+                    legado.
+                </p>
+
+                <div class="team-grid"> <!-- 3D FLIP CARDS GRID -->
+
+                    <!-- Card 1: Sembrador -->
+                    <div class="card-scene">
+                        <div class="card-object">
+                            <!-- Front -->
+                            <div class="card-face face-front">
+                                <img src="assets/images/SEMBRADOR PATRIMONIAL baja calidad.webp"
+                                    alt="Sembrador Patrimonial" class="card-icon parallax-img">
+                                <h4 class="text-gold parallax-title"
+                                    style="margin-top: 1.5rem; letter-spacing: 0.1em; font-size: 1.1rem;">
+                                    SEMBRADOR<br>PATRIMONIAL</h4>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-face face-back">
+                                <!-- Title removed as requested -->
+                                <p class="parallax-text"
+                                    style="font-size: 0.95rem; color: #fff; font-family: var(--font-display); margin-bottom: 1rem;">
+                                    QUIEN ASEGURA LA RAÍZ</p>
+                                <div class="parallax-text"
+                                    style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
+                                </div>
+                                <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Adquiere
+                                    derechos de tierra y aporta los recursos que anclan la base patrimonial del
+                                    proyecto.
+                                    <br>Está desde el inicio, asegurando territorio y confianza a largo plazo.
+                                </p>
+
+                                <a href="#dossier" class="parallax-text"
+                                    style="text-decoration: none; margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.7; transition: opacity 0.3s; color: var(--color-base-paper); cursor: pointer;"
+                                    onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.7'">
+                                    <span
+                                        style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">Explorar
+                                        más</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="display: block;">
+                                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="square" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Fundador -->
+                    <div class="card-scene">
+                        <div class="card-object">
+                            <!-- Front -->
+                            <div class="card-face face-front">
+                                <img src="assets/images/FUNDADOR CIMENTACIÓN baja calidad.webp"
+                                    alt="Fundador de Cimentación" class="card-icon parallax-img">
+                                <h4 class="text-gold parallax-title"
+                                    style="margin-top: 1.5rem; letter-spacing: 0.1em; font-size: 1.1rem;">FUNDADOR
+                                    DE<br>CIMENTACIÓN</h4>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-face face-back">
+                                <!-- Title removed as requested -->
+                                <p class="parallax-text"
+                                    style="font-size: 0.95rem; color: #fff; font-family: var(--font-display); margin-bottom: 1rem;">
+                                    QUIEN CONVIERTE LA VISIÓN EN ESTRUCTURA</p>
+                                <div class="parallax-text"
+                                    style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
+                                </div>
+                                <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Activa
+                                    la
+                                    fase de cimentación y pone en marcha la infraestructura.
+                                    <br>Hace posible el inicio del hospedaje como experiencia viva dentro del
+                                    ecosistema.
+                                </p>
+
+                                <a href="#dossier" class="parallax-text"
+                                    style="text-decoration: none; margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.7; transition: opacity 0.3s; color: var(--color-base-paper); cursor: pointer;"
+                                    onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.7'">
+                                    <span
+                                        style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">Explorar
+                                        más</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="display: block;">
+                                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="square" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Artífice -->
+                    <div class="card-scene">
+                        <div class="card-object">
+                            <!-- Front -->
+                            <div class="card-face face-front">
+                                <img src="assets/images/ARTÍFICE REGENARTIVO baja calidad.webp"
+                                    alt="Artífice de Anclaje" class="card-icon parallax-img">
+                                <h4 class="text-gold parallax-title"
+                                    style="margin-top: 1.5rem; letter-spacing: 0.1em; font-size: 1.1rem;">ARTÍFICE
+                                    DE<br>ANCLAJE</h4>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-face face-back">
+                                <!-- Title removed as requested -->
+                                <p class="parallax-text"
+                                    style="font-size: 0.95rem; color: #fff; font-family: var(--font-display); margin-bottom: 1rem;">
+                                    QUIEN DA VIDA AL ECOSISTEMA</p>
+                                <div class="parallax-text"
+                                    style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
+                                </div>
+                                <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Aporta
+                                    servicios de alto valor al proyecto.
+                                    <br>Talento, conocimiento y operación que hacen florecer la comunidad y consolidan
+                                    el ecosistema.
+                                </p>
+
+                                <a href="#dossier" class="parallax-text"
+                                    style="text-decoration: none; margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.7; transition: opacity 0.3s; color: var(--color-base-paper); cursor: pointer;"
+                                    onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.7'">
+                                    <span
+                                        style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">Explorar
+                                        más</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="display: block;">
+                                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="square" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: EQUIPO -->
+        <section id="team" class="section-padding theme-dark">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: 4rem;">Arquitectura Humana</h2>
+
+                <div class="team-grid">
+                    <!-- Ismael -->
+                    <div class="team-member">
+                        <img src="assets/images/PORTRAIT_ISMAEL.png" alt="Ismael" class="member-image">
+                        <h4 class="text-amber">Ismael</h4>
+                        <p
+                            style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                            Estratega y CEO</p>
+                        <p class="text-mist" style="font-size: 0.9rem;">Custodia la coherencia del proyecto y su
+                            desarrollo a largo plazo.</p>
+                    </div>
+
+                    <!-- Yuman -->
+                    <div class="team-member">
+                        <img src="assets/images/PORTRAIT_YUMAN.png" alt="Yuman" class="member-image">
+                        <h4 class="text-amber">Yuman</h4>
+                        <p
+                            style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                            Arquitecto del Territorio</p>
+                        <p class="text-mist" style="font-size: 0.9rem;">Traduce la visión en forma habitable y
+                            dialogante con la tierra.</p>
+                    </div>
+
+                    <!-- Primeros Fundadores -->
+                    <div class="team-member">
+                        <img src="assets/images/founders_group.png" alt="Primeros Fundadores" class="member-image">
+                        <h4 class="text-amber">PRIMEROS FUNDADORES</h4>
+                        <p
+                            style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                            LA FUERZA QUE GUÍA</p>
+                        <p class="text-mist" style="font-size: 0.9rem;">Representan el primer compromiso con la visión
+                            del proyecto.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card text-center governance-pillar" onclick="toggleGovernance(this)">
+                    <div class="pillar-header">
+                        <h4 class="governance-title">Gobernanza Sociocrática</h4>
+                        <div class="governance-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="arrow-icon">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="square" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="governance-content">
+                        <div class="content-wrapper">
+                            <p class="text-mist" style="margin-bottom: 1rem;">Trabajamos bajo un modelo de sociocracia
+                                que sustituye la jerarquía por la inteligencia colectiva. Las decisiones se toman por
+                                consentimiento informado, garantizando una participación equitativa y un avance
+                                consciente del proyecto.</p>
+                            <p class="text-mist">Este sistema sostiene una estructura estable y resiliente, donde la
+                                eficiencia operativa se equilibra con la escucha humana, basada en transparencia,
+                                eficiencia y equidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 8: CIERRE / CTA -->
+        <section id="dossier" class="section-padding flex-center"
+            style="min-height: 60vh; background: var(--color-base-obsidian); text-align: center;">
+            <div class="container">
+                <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem;">Todo viaje consciente<br>comienza
+                    con una decisión.</h2>
+                <p
+                    style="color: var(--color-text-mist); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Si este proyecto ha resonado contigo, te invitamos a conocer la visión completa y los próximos
+                    pasos.
+                </p>
+
+                <button class="btn-primary" onclick="DossierModal.open()">Solicitar Dossier</button>
+
+                <div
+                    style="margin-top: 4rem; opacity: 0.5; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+                    <p style="letter-spacing: 0.3em; font-family: var(--font-display); margin: 0;">In Lak’ech</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">Yo soy otro tú.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER: Minimal & Elegant -->
+        <footer class="site-footer"
+            style="width: 100%; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.05); background: var(--color-base-obsidian); display: flex; justify-content: center; align-items: center;">
+            <p
+                style="margin: 0; width: 100%; text-align: center; font-size: 0.85rem; opacity: 0.6; letter-spacing: 0.05em; color: var(--color-base-paper); padding: 0 2rem;">
+                © In Lak’ech Eco-Aldea Cooperativa de Servicios, Productos y Rentas Turísticas — Todos los derechos
+                reservados.
+            </p>
+        </footer>
+
+
+        <!-- LIGHTBOX MODAL -->
+        <div id="carousel-modal" class="carousel-modal" onclick="closeModal()">
+            <span class="close-modal">&times;</span>
+
+            <!-- Navigation Arrows -->
+            <a class="prev-slide" onclick="changeSlide(-1, event)">&#10094;</a>
+            <a class="next-slide" onclick="changeSlide(1, event)">&#10095;</a>
+
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+
+        <!-- RITUAL MENU OVERLAY (Full Screen) -->
+        <div id="ritual-menu-overlay">
+            <div class="menu-content">
+                <nav class="ritual-nav">
+                    <a href="#hero" onclick="toggleRitualMenu()">Inicio</a>
+                    <a href="#manifesto" onclick="toggleRitualMenu()">Manifiesto</a>
+                    <a href="#location" onclick="toggleRitualMenu()">Ubicación</a>
+                    <a href="#carousel-section" onclick="toggleRitualMenu()">Galería</a>
+                    <a href="#master-plan" onclick="toggleRitualMenu()">Master Plan</a>
+                    <a href="#progress" onclick="toggleRitualMenu()">Hitos</a>
+                    <a href="#participation" onclick="toggleRitualMenu()">Participación</a>
+                    <a href="#team" onclick="toggleRitualMenu()">Equipo</a>
+                </nav>
+            </div>
+            <button class="close-ritual" onclick="toggleRitualMenu()" aria-label="Cerrar Menú">&times;</button>
+        </div>
+
+        <!-- ========================================
+             DOSSIER MODAL (REBUILT FROM SCRATCH)
+             Clean, simple, single-responsibility
+        ========================================= -->
+        <div id="dossier-modal" class="modal-overlay" aria-hidden="true">
+            <!-- Dark backdrop - click to close -->
+            <div class="modal-backdrop"></div>
+
+            <!-- Modal box - centered, above backdrop -->
+            <div class="modal-box" role="dialog" aria-modal="true">
+                <!-- Close button -->
+                <button type="button" class="modal-close" aria-label="Cerrar">&times;</button>
+
+                <!-- Form state -->
+                <div id="modal-form-state">
+                    <div class="modal-header">
+                        <h3>Espacio Reservado</h3>
+                        <p>Esta información se comparte con cuidado. Estás entrando en un entorno protegido.</p>
+                    </div>
+                    <form id="dossier-form">
+                        <!-- Field 1: Role -->
+                        <div class="modal-field">
+                            <label>¿Con qué rol te identificas?</label>
+                            <div class="radio-group"
+                                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.5rem;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 300; font-size: 0.8rem;">
+                                    <input type="radio" name="role" value="Sembrador Patrimonial" required
+                                        style="accent-color: var(--color-cta-gold); width: 1rem; height: 1rem;">
+                                    Sembrador
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 300; font-size: 0.8rem;">
+                                    <input type="radio" name="role" value="Fundador Cimentación"
+                                        style="accent-color: var(--color-cta-gold); width: 1rem; height: 1rem;">
+                                    Fundador
+                                </label>
+                                <label
+                                    style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 300; font-size: 0.8rem;">
+                                    <input type="radio" name="role" value="Artífice de Anclaje"
+                                        style="accent-color: var(--color-cta-gold); width: 1rem; height: 1rem;">
+                                    Artífice
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Field 2: Name -->
+                        <div class="modal-field">
+                            <label for="form-name">Nombre</label>
+                            <input type="text" id="form-name" name="name" required placeholder="Tu nombre completo">
+                        </div>
+
+                        <!-- Field 3: Primary Contact -->
+                        <div id="step-primary" style="display: none; transition: opacity 0.5s ease; opacity: 0;">
+                            <div class="modal-field">
+                                <label>Tu principal forma de contacto</label>
+                                <div class="contact-method-selector"
+                                    style="display: flex; gap: 2rem; margin: 0.3rem 0;">
+                                    <label
+                                        style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.8rem;">
+                                        <input type="radio" name="contact_pref_1" value="email" required
+                                            style="accent-color: var(--color-cta-gold);"> Correo
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.8rem;">
+                                        <input type="radio" name="contact_pref_1" value="phone"
+                                            style="accent-color: var(--color-cta-gold);"> Teléfono
+                                    </label>
+                                </div>
+                                <input type="email" id="primary-email" name="primary_email"
+                                    placeholder="correo@ejemplo.com"
+                                    style="display: none; width: 100%; padding: 0.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; border-radius: 4px; font-size: 0.9rem;">
+                                <input type="tel" id="primary-phone" name="primary_phone" placeholder="+52 ..."
+                                    style="display: none; width: 100%; padding: 0.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                        </div>
+
+                        <!-- Field 4: Secondary Contact (Optional) -->
+                        <div id="step-secondary" style="display: none; transition: opacity 0.5s ease; opacity: 0;">
+                            <div class="modal-field">
+                                <label>Segunda forma de contacto (opcional)</label>
+                                <div class="contact-method-selector"
+                                    style="display: flex; gap: 2rem; margin: 0.3rem 0;">
+                                    <label
+                                        style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.8rem;">
+                                        <input type="radio" name="contact_pref_2" value="email"
+                                            style="accent-color: var(--color-cta-gold);"> Correo
+                                    </label>
+                                    <label
+                                        style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.8rem;">
+                                        <input type="radio" name="contact_pref_2" value="phone"
+                                            style="accent-color: var(--color-cta-gold);"> Teléfono
+                                    </label>
+                                </div>
+                                <input type="email" id="secondary-email" name="secondary_email"
+                                    placeholder="correo@ejemplo.com"
+                                    style="display: none; width: 100%; padding: 0.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; border-radius: 4px; font-size: 0.9rem;">
+                                <input type="tel" id="secondary-phone" name="secondary_phone" placeholder="+52 ..."
+                                    style="display: none; width: 100%; padding: 0.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                        </div>
+                        <button type="submit" class="modal-submit">Solicitar Dossier</button>
+                    </form>
+                </div>
+
+                <!-- Success state -->
+                <div id="modal-success-state" style="display: none;">
+                    <h3 class="success-title">Solicitud recibida</h3>
+                    <p class="success-text">Agradecemos tu interés. Te contactaremos con la discreción que este viaje
+                        merece.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MANIFESTO MODAL (Full Text) -->
+        <div id="manifesto-modal" class="modal-overlay" aria-hidden="true">
+            <div class="modal-backdrop" onclick="ManifestoModal.close()"></div>
+            <div class="modal-box manifesto-modal-box" role="dialog" aria-modal="true">
+                <button type="button" class="modal-close" onclick="ManifestoModal.close()">&times;</button>
+
+                <div class="manifesto-modal-header" style="text-align: center; margin-bottom: 3rem;">
+                    <h2
+                        style="font-family: var(--font-display); color: var(--color-cta-gold); font-size: 2rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                        Manifiesto In Lak’ech</h2>
+                    <div
+                        style="width: 60px; height: 1px; background-color: var(--color-cta-gold); margin: 0 auto; opacity: 0.7;">
+                    </div>
+                </div>
+
+                <div class="manifesto-full-content">
+                    <p>Vivimos una era marcada por la aceleración, donde el crecimiento suele imponerse a costa de la
+                        tierra, del tiempo y de los vínculos humanos. En este contexto, proteger el patrimonio ya no
+                        puede limitarse a preservar valor económico: requiere una mirada más amplia, capaz de integrar
+                        bienestar, estabilidad y visión de futuro.</p>
+
+                    <p>In Lak’ech surge como una respuesta consciente a esta desconexión. No plantea una ruptura con el
+                        progreso, sino una evolución del mismo: un modelo que armoniza desarrollo humano, equilibrio
+                        natural y prosperidad compartida. Un proyecto que entiende que habitar es una forma de relación,
+                        no de consumo.</p>
+
+                    <p>Nuestro propósito es crear un asentamiento colectivo saludable, diseñado como un organismo vivo
+                        donde arquitectura, territorio y comunidad se sostienen mutuamente. Cada decisión nace del
+                        respeto por los ciclos naturales y de una planificación pensada a largo plazo, priorizando la
+                        resiliencia frente a la inmediatez.</p>
+
+                    <p>Creemos que el bienestar común no compite con la prosperidad individual, sino que la refuerza.
+                        Cuando el entorno es estable, la comunidad está cohesionada y la tierra es cuidada, el valor
+                        generado es más profundo, duradero y significativo. Aquí, la rentabilidad no se opone a la
+                        conciencia: se apoya en ella.</p>
+
+                    <p>Inspirado en el principio ancestral In Lak’ech —“yo soy otro tú”—, el proyecto reconoce la
+                        interdependencia entre las personas, la tierra y las estructuras que construimos. No hay
+                        decisiones aisladas: cada acción impacta en el conjunto y define el legado que dejamos.</p>
+
+                    <p>In Lak’ech es una propuesta tangible y replicable que demuestra que es posible proteger y hacer
+                        crecer el patrimonio desde la armonía, el respeto y la belleza funcional. Un lugar donde el
+                        futuro no se acelera, se cultiva.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEO MODAL (Fullscreen Overlay) -->
+        <div id="video-modal" class="video-modal-overlay" style="display: none;">
+            <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
+            <div class="video-modal-content">
+                <button type="button" class="video-close-btn" onclick="closeVideoModal()">&times;</button>
+                <div class="video-placeholder-box">
+                    <p>VÍDEO PRÓXIMAMENTE</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/dossier-modal.js?v=4"></script>
+        <!-- Logic moved to dossier-modal.js for better organization -->
+        <script src="assets/js/app.js?v=4"></script>
+        <script src="assets/js/animations.js?v=4"></script>
+</body>
+
+</html>
