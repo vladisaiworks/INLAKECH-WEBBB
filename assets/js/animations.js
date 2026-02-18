@@ -15,6 +15,10 @@ const HEADER_HEIGHT = 80; // #top-bar fixed height (~2rem padding × 2 + content
 const MOBILE_BREAKPOINT = 767; // Mobile Design Contract boundary
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // --- INTRO ANIMATION (Global: Mobile + Desktop) ---
+    initIntroAnimation();
+
     /**
      * MOBILE vs DESKTOP ANIMATION SPLIT
      * Mobile (≤767px): Simple block-level reveals (appear when scrolled into view)
@@ -46,6 +50,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+/* --- 0. PRELOADER / INTRO ANIMATION --- */
+function initIntroAnimation() {
+    // 1. Initial States (Prevent FOUC manually)
+    gsap.set("#hero .hero-bg-img", { scale: 1.1, opacity: 0 });
+    gsap.set("#hero h3", { y: 20, opacity: 0 });
+    gsap.set("#hero h1", { y: 30, opacity: 0 });
+    gsap.set("#hero p", { y: 20, opacity: 0 });
+    gsap.set("#hero .cta-wrapper", { y: 20, opacity: 0 }); // Button wrapper
+    gsap.set("#top-bar", { y: -20, opacity: 0 });
+
+    // 2. Cinematic Timeline
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Step 1: Background emerges smoothly (Faster breath)
+    tl.to("#hero .hero-bg-img", {
+        scale: 1,
+        opacity: 0.6, // DARKER: Restored classic darkness (was 0.8)
+        duration: 2.2,
+        ease: "power2.out",
+        force3D: true // FLICKER FIX: Prevents black flashes during opacity changes
+    });
+
+    // Step 2: Header slides down softly (Concurrent with bg)
+    tl.to("#top-bar", {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        force3D: true // FLICKER FIX: Render on GPU
+    }, "-=2.0");
+
+    // Step 3: Text Stagger (RAPID & DYNAMIC LADDER)
+    // Starts while zoom is still active
+    tl.to("#hero h3", {
+        y: 0,
+        opacity: 1,
+        duration: 0.7
+    }, "-=0.9") // Starts early (at ~0.5s absolute)
+
+        .to("#hero h1", {
+            y: 0,
+            opacity: 1,
+            duration: 0.9
+        }, "-=0.5") // Quick follow-up (0.2s lag)
+
+        .to("#hero p", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8
+        }, "-=0.7") // Quick follow-up (0.2s lag)
+
+        .to("#hero .cta-wrapper", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8
+        }, "-=0.6"); // Quick follow-up (0.2s lag)
+}
+
 /* --- 0. MOBILE: SIMPLE BLOCK REVEALS --- */
 /*
  * Every element gets its own ScrollTrigger based on its own position.
@@ -73,8 +134,8 @@ function initMobileSimpleReveals() {
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: el,
-                    start: "top 92%",
-                    toggleActions: "play none none reverse"
+                    start: "top 95%", // Start even earlier
+                    toggleActions: "play none none none" // STABILITY FIX: Never hide again once shown
                 }
             }
         );
@@ -90,8 +151,8 @@ function initMobileSimpleReveals() {
                 opacity: 0.6, duration: 0.6, ease: "power2.out",
                 scrollTrigger: {
                     trigger: mbg,
-                    start: "top 92%",
-                    toggleActions: "play none none reverse"
+                    start: "top 95%",
+                    toggleActions: "play none none none"
                 }
             }
         );
@@ -270,8 +331,8 @@ function initMobileTimeline() {
                 ease: 'power2.out',
                 scrollTrigger: {
                     trigger: ms,
-                    start: 'top 80%', // Icon appears earlier
-                    toggleActions: 'play none none reverse'
+                    start: 'top 85%', // Even earlier start
+                    toggleActions: 'play none none none' // STABILITY FIX: Never hide again
                 }
             }
         );
@@ -280,7 +341,8 @@ function initMobileTimeline() {
 
 /* --- 1. GENERAL REVEALS (Desktop only) --- */
 function initGeneralReveals() {
-    const revealElements = document.querySelectorAll("h1, .cta-wrapper, li, .grid-cols-2 > div");
+    // Select elements but EXCLUDE #hero children to prevent intro conflict
+    const revealElements = document.querySelectorAll("h1:not(#hero h1), .cta-wrapper:not(#hero .cta-wrapper), li, .grid-cols-2 > div");
     revealElements.forEach((el) => {
         gsap.fromTo(el,
             { y: 30, opacity: 0 },
@@ -316,7 +378,11 @@ function initManifestoSequence() {
             {
                 y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
                 scrollTrigger: {
-                    trigger: item, start: "top 85%", end: "top 40%", toggleActions: "play none none reverse", scrub: 0.5
+                    trigger: item,
+                    start: "top 90%", // Starts earlier (was 85%)
+                    end: "top 60%",   // Ends before center (faster reveal)
+                    toggleActions: "play none none reverse",
+                    scrub: 1          // Smoother, but constrained window
                 }
             }
         );
@@ -659,7 +725,7 @@ function initProgressSequence() {
                     scrollTrigger: {
                         trigger: section,
                         start: "top 50%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none none" // STABILIZED: Once shown, stay shown
                     }
                 }
             );
@@ -721,7 +787,7 @@ function initCarouselReveal() {
             trigger: "#carousel-section",
             start: "top 70%",
             end: "bottom 30%",
-            toggleActions: "play none none reverse"
+            toggleActions: "play none none none" // STABILITY FIX: Once revealed, stay revealed
         }
     });
 

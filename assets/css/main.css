@@ -486,6 +486,24 @@ main>section {
 
 /* --- BASE COMPONENT STYLES (Responsive overrides in responsive.css) --- */
 
+/* Section 1: Hero Image */
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    /* target opacity */
+    filter: brightness(0.85) contrast(1.1);
+    /* Subtle enhancement */
+    will-change: transform, opacity;
+    /* FLICKER FIX: Prepare GPU */
+    backface-visibility: hidden;
+    /* FLICKER FIX: Prevent z-fighting */
+}
+
 /* Section 2: Manifesto Image */
 .manifesto-img {
     width: 90%;
@@ -1535,36 +1553,28 @@ main>section {
 
 /* --- TOP NAVIGATION (Architectural Anchor) --- */
 #top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    padding: 2rem 5%;
-    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.5rem 3rem;
+    /* CONSISTENT PADDING */
+    z-index: 1000;
     pointer-events: none;
-    /* Allow click-through on empty areas */
-    transition: background 0.5s ease;
+    transition: background 0.5s ease, padding 0.5s ease;
 }
 
 #top-bar>* {
     pointer-events: auto;
-    /* Re-enable clicks on elements */
 }
 
-/* Optional: Slight dark gradient for readability on scroll */
-/* Clean, uniform background (transparent) - User requested NO BAR */
+/* SCROLLED STATE: No padding change to prevent shift */
 #top-bar.scrolled {
     background: transparent;
     box-shadow: none;
-    padding-top: 2rem;
-    /* Keep original padding */
-    padding-bottom: 2rem;
 }
 
-/* Background blur removed - modal is layered above content */
 
 .logo-text {
     font-family: var(--font-display);
@@ -2362,4 +2372,47 @@ main>section {
 /* Fix for abrupt hover on Milestone 4 (Cimentación) */
 [data-milestone="4"] .timeline-icon-box {
     transition: transform 1s ease, box-shadow 1s ease, border-color 1s ease !important;
+}
+
+/* --- HEADER FLICKER FIX & STYLES --- */
+#header-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    will-change: transform, opacity;
+    /* FLICKER FIX */
+    backface-visibility: hidden;
+    /* FLICKER FIX */
+}
+
+
+
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-base-paper);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menu-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-base-paper);
+    transition: color 0.3s ease;
+}
+
+.menu-trigger:hover {
+    color: var(--color-cta-gold);
 }

@@ -334,15 +334,26 @@ p,
     /* --- SECTION REFINEMENTS --- */
 
     /* Manifesto */
+    #manifesto {
+        min-height: 100vh;
+        /* Increase height relative to viewport */
+        padding-bottom: 15rem;
+        /* Massive bottom padding (was 8rem) */
+    }
+
     #manifesto .manifesto-content {
         max-width: 650px;
         /* Slightly wider for better reading flow */
     }
 
     .manifesto-img {
-        width: 80%;
-        height: 70%;
+        width: 95%;
+        /* Even bigger (was 85%) */
+        height: 85%;
+        /* Even bigger (was 75%) */
         opacity: 0.22;
+        transform: translateY(20%) !important;
+        /* Push image down further (was 10%) */
     }
 
     /* Location */
@@ -465,6 +476,23 @@ p,
     #dossier h2 {
         font-size: 2.5rem !important;
         /* Slightly larger for final impact, but < H1 */
+    }
+
+    /* --- RITUAL MENU (More Air) --- */
+    #ritual-menu-overlay {
+        padding-top: 15vh !important;
+        padding-bottom: 15vh !important;
+        /* Force significant breathing room */
+    }
+
+    .ritual-nav {
+        gap: 1.5rem !important;
+        /* Slightly tighter vertical rhythm */
+    }
+
+    .ritual-nav a {
+        font-size: 2.2rem !important;
+        /* Controlled size for laptop height constraints */
     }
 }
 
@@ -1082,12 +1110,17 @@ p,
 
     .plan-visual {
         order: 1;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        /* PERFORMANCE: Hint to browser */
     }
 
     .plan-content {
         order: 2;
         padding-left: 0;
         text-align: center;
+        /* PERFORMANCE: Simple text rendering */
+        text-rendering: optimizeSpeed;
     }
 
     .plan-content span:first-child {
@@ -1376,7 +1409,14 @@ p,
         border-radius: 12px !important;
         padding: 2.5rem 1.5rem !important;
         /* Internal breathing room */
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4) !important;
+        /* Optimized Shadow */
+
+        /* PERFORMANCE FIXES */
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        transform-style: flat !important;
+        /* Disable 3D context */
 
         transition: none !important;
     }
@@ -2658,5 +2698,76 @@ p,
     #ritual-menu-overlay .ritual-nav a {
         font-size: 1.8rem !important;
         /* Slightly smaller */
+    }
+}
+
+/* ==========================================================================
+   GLOBAL DESKTOP OVERRIDE (COMPACT MENU)
+   Enforces "Breathing Room" on all screens wider than 1024px.
+   (Laptop, Desktop, Large Desktop)
+   - Reduces font size significantly (3rem -> 2rem)
+   - Tights gap (2rem -> 1.5rem)
+   - Adds massive padding (15vh) to force centering with air.
+   ========================================================================== */
+@media (min-width: 1024px) {
+    #ritual-menu-overlay {
+        padding-top: 15vh !important;
+        padding-bottom: 15vh !important;
+        /* Force air top/bottom */
+        align-items: center !important;
+        /* Ensure vertical centering */
+    }
+
+    .ritual-nav {
+        gap: 2.5rem !important;
+        /* Relaxed vertical spacing */
+    }
+
+    .ritual-nav a {
+        font-size: 2rem !important;
+        /* Smaller text to fit comfortably */
+        line-height: 1.1 !important;
+        transform: none !important;
+        /* Reset any conflicting transforms */
+    }
+
+    /* --- GLOBAL MANIFESTO OVERRIDE (Forced Spacing) --- */
+    /* --- GLOBAL MANIFESTO OVERRIDE (Forced Spacing) --- */
+    #manifesto {
+        min-height: 120vh !important;
+        /* Force screen to be larger than viewport to create gap */
+        padding-bottom: 15rem !important;
+        /* Reduced by half (was 30rem) */
+        margin-bottom: 0 !important;
+        /* Remove transparent margin */
+        position: relative !important;
+        background-color: var(--color-base-obsidian) !important;
+        /* Ensure solid black background covers ambient light */
+        z-index: 5 !important;
+        /* Ensure it sits above ambient layers */
+    }
+
+    #manifesto .manifesto-content {
+        padding-top: 8vh !important;
+        /* Push text down ~5-8% */
+    }
+
+    .manifesto-img {
+        width: 80% !important;
+        /* Restore original Laptop size */
+        max-width: none !important;
+        /* Uncap width for large monitors (so it adapts) */
+        height: auto !important;
+        /* Maintain aspect ratio */
+        max-height: 88% !important;
+        /* Cap height @ 88% so it never touches bottom (10% top + 88% = 98% ~ safe) */
+        top: 10% !important;
+        /* Restore original position */
+        left: 50% !important;
+        transform: translateX(-50%) translateY(0) !important;
+        /* Center horizontally */
+        object-fit: contain !important;
+        position: absolute !important;
+        opacity: 0.30 !important;
     }
 }
