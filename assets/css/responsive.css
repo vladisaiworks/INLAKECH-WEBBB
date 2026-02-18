@@ -738,7 +738,8 @@ p,
         --mobile-text-h2: clamp(1.7rem, 5.5vw, 2.2rem);
         --mobile-text-body: clamp(0.9rem, 2.6vw, 1rem);
         --mobile-text-small: clamp(0.85rem, 2.2vw, 0.95rem);
-        --mobile-pad-x: clamp(18px, 5vw, 24px);
+        /* Generous Padding Update: was clamp(18px, 5vw, 24px); */
+        --mobile-pad-x: clamp(24px, 6vw, 36px);
         --mobile-section-pad-y: clamp(60px, 12vw, 90px);
         --mobile-gap-title: 1.2rem;
         --mobile-gap-paragraph: 1rem;
@@ -771,6 +772,14 @@ p,
         font-size: var(--mobile-text-h2) !important;
         line-height: var(--mobile-lh-heading);
         letter-spacing: 0.03em;
+    }
+
+    /* CUSTOM HERO MOBILE ADJUSTMENT */
+    .hero-bg-img {
+        /* "Sweet Spot" - 60% */
+        object-position: 60% 20% !important;
+        transform: scale(1.0);
+        /* Ensure no extra zoom */
     }
 
     h3,
@@ -1211,7 +1220,8 @@ p,
         top: auto !important;
         /* No transform reset — GSAP controls translateY for animation */
         width: 100% !important;
-        margin-bottom: 3rem !important;
+        margin-bottom: 8rem !important;
+        /* Increased from 3rem for Slower Pacing */
         z-index: 10 !important;
         /* Higher z-index to stay above line */
         display: flex !important;
@@ -1228,21 +1238,26 @@ p,
         flex-direction: row !important;
         align-items: flex-start !important;
         text-align: left !important;
-        gap: 1.25rem !important;
+        gap: 1.5rem !important;
+        /* Increased gap */
         width: 100% !important;
     }
 
     /* Icon boxes — consistent size */
     .timeline-icon-box {
-        width: 56px !important;
-        height: 56px !important;
-        min-width: 56px !important;
+        width: 72px !important;
+        /* Increased from 56px */
+        height: 72px !important;
+        /* Increased from 56px */
+        min-width: 72px !important;
+        /* Increased from 56px */
         background: #080808 !important;
         /* Solid obsidian to hide line behind */
         opacity: 1 !important;
         border: 1px solid rgba(197, 160, 101, 0.5) !important;
         border-radius: 50% !important;
-        padding: 0.5rem !important;
+        padding: 0.75rem !important;
+        /* Adjusted padding */
         box-shadow: inset 0 0 15px rgba(197, 160, 101, 0.05) !important;
         position: relative !important;
         z-index: 20 !important;
@@ -1377,10 +1392,12 @@ p,
     /* Icon */
     #participation .face-front img.card-icon {
         order: 1 !important;
-        width: 60px !important;
+        width: 80px !important;
+        /* Increased from 60px (+33%) */
         height: auto !important;
         margin: 0 auto 1.5rem auto !important;
-        filter: drop-shadow(0 0 15px rgba(197, 169, 107, 0.25)) !important;
+        filter: drop-shadow(0 0 20px rgba(197, 169, 107, 0.3)) !important;
+        /* Scaled up glow */
         opacity: 1 !important;
         transform: none !important;
     }
@@ -1527,7 +1544,8 @@ p,
     /* Manifesto */
     #manifesto {
         min-height: auto;
-        padding-top: var(--mobile-section-pad-y);
+        padding-top: 4rem !important;
+        /* Reduced from var(--mobile-section-pad-y) for tighter gap */
         padding-bottom: 12vh !important;
         /* More air at bottom */
         position: relative;
@@ -2569,6 +2587,72 @@ p,
         gap: 1.5rem !important;
         /* Reduced gap between items */
         width: 100% !important;
+    }
+
+    /* --- LIGHTBOX MOBILE FIXES --- */
+    /* Ensure modal uses flex-start to prevent vertical centering jumps */
+    .carousel-modal {
+        justify-content: center !important;
+        /* Center content vertically again */
+        padding-top: 0 !important;
+        /* Remove fixed top offset */
+        padding-bottom: 5vh !important;
+        /* Slight bottom cushion */
+    }
+
+    /* Image Wrapper: Centers image horizontally, allows arrows to stick to image */
+    .modal-image-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Image Sizing: Prevent full-screen height to leave room for text */
+    .modal-content {
+        max-height: 40vh !important;
+        /* Limit height on mobile */
+        width: auto !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+
+    /* Arrows: Centered relative to the IMAGE (wrapper), not screen */
+    .prev-slide,
+    .next-slide {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin-top: 0 !important;
+        /* Reset old margin */
+        padding: 1.5rem !important;
+        /* Larger touch target */
+    }
+
+    .prev-slide {
+        left: 0 !important;
+    }
+
+    .next-slide {
+        right: 0 !important;
+    }
+
+    /* Caption: Ensures text flows downwards and stays centered */
+    #caption {
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 90% !important;
+        margin: 1.5rem auto 0 auto !important;
+        /* Fixed top margin */
+        font-size: 1.1rem !important;
+        /* Readable size */
+        line-height: 1.4 !important;
+        display: block !important;
+        /* Reserve space for up to 3 lines to prevent jumping */
+        min-height: 5rem !important;
+        /* Keeps total height consistent */
+        vertical-align: top !important;
     }
 
     #ritual-menu-overlay .ritual-nav a {

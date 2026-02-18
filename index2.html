@@ -58,7 +58,7 @@
             style="height: 100vh; position: relative; overflow: hidden;">
             <div class="background-layer" style="position: absolute; inset: 0; z-index: -1;">
                 <!-- Placeholder for Hero Image/Video -->
-                <img src="assets/images/IMAGEN_FONDO_HERO.jpeg" alt="Yucatan Jungle"
+                <img src="assets/images/IMAGEN CHICHEN ITA HERO.webp" alt="Yucatan Jungle" class="hero-bg-img"
                     style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
                 <div
                     style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, var(--color-base-obsidian) 100%);">
@@ -143,8 +143,13 @@
                 <!-- Parchment Wrapper with Pillars INSIDE -->
                 <div class="parchment-wrapper"
                     style="position: relative; z-index: 1; transform-style: preserve-3d; perspective: 1000px;">
+                    <!-- DESKTOP MAP -->
                     <img src="assets/images/PERGAMINO BAJA CALIDAD.webp" alt="Mapa Yucatán Pergamino"
-                        class="parchment-img">
+                        class="parchment-img desktop-only">
+
+                    <!-- MOBILE MAP -->
+                    <img src="assets/images/MAPA YUKATAN PARA MÓVIL.webp" alt="Mapa Yucatán Móvil"
+                        class="parchment-img mobile-only">
 
                     <!-- Custom Dynamic Map Pin -->
                     <div class="custom-map-pin">
@@ -756,9 +761,9 @@
                                     style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
                                 </div>
                                 <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Adquiere
-                                    derechos de tierra y aporta los recursos que anclan la base patrimonial del
-                                    proyecto.
-                                    <br>Está desde el inicio, asegurando territorio y confianza a largo plazo.
+                                    derechos de tierra y aporta capital fundacional.
+                                    <br>Su inversión consolida territorio y fortalece la base patrimonial sobre la que
+                                    crecerá el proyecto.
                                 </p>
 
                                 <a href="#dossier" class="parallax-text"
@@ -792,15 +797,15 @@
                                 <!-- Title removed as requested -->
                                 <p class="parallax-text"
                                     style="font-size: 0.95rem; color: #fff; font-family: var(--font-display); margin-bottom: 1rem;">
-                                    QUIEN CONVIERTE LA VISIÓN EN ESTRUCTURA</p>
+                                    Quien convierte la visión en estructura</p>
                                 <div class="parallax-text"
                                     style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
                                 </div>
-                                <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Activa
-                                    la
-                                    fase de cimentación y pone en marcha la infraestructura.
-                                    <br>Hace posible el inicio del hospedaje como experiencia viva dentro del
-                                    ecosistema.
+                                <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Adquiere
+                                    derechos de tierra y activa la construcción del ecosistema.
+                                    <br>Su aportación impulsa la infraestructura y pone en marcha el modelo de hospedaje
+                                    y
+                                    servicios.
                                 </p>
 
                                 <a href="#dossier" class="parallax-text"
@@ -839,9 +844,9 @@
                                     style="width: 40px; height: 1px; background: var(--color-cta-gold); margin: 0 auto 1rem auto;">
                                 </div>
                                 <p class="text-mist parallax-text" style="font-size: 0.9rem; line-height: 1.6;">Aporta
-                                    servicios de alto valor al proyecto.
-                                    <br>Talento, conocimiento y operación que hacen florecer la comunidad y consolidan
-                                    el ecosistema.
+                                    servicios, talento u operación con anclaje real.
+                                    <br>Integra su conocimiento al territorio, transformando la infraestructura en
+                                    experiencia viva.
                                 </p>
 
                                 <a href="#dossier" class="parallax-text"
@@ -966,11 +971,13 @@
         <div id="carousel-modal" class="carousel-modal" onclick="closeModal()">
             <span class="close-modal">&times;</span>
 
-            <!-- Navigation Arrows -->
-            <a class="prev-slide" onclick="changeSlide(-1, event)">&#10094;</a>
-            <a class="next-slide" onclick="changeSlide(1, event)">&#10095;</a>
+            <!-- Image Wrapper for Arrow Centering -->
+            <div class="modal-image-wrapper">
+                <a class="prev-slide" onclick="changeSlide(-1, event)">&#10094;</a>
+                <img class="modal-content" id="img01">
+                <a class="next-slide" onclick="changeSlide(1, event)">&#10095;</a>
+            </div>
 
-            <img class="modal-content" id="img01">
             <div id="caption"></div>
         </div>
 
@@ -1098,9 +1105,9 @@
 
                 <!-- Success state -->
                 <div id="modal-success-state" style="display: none;">
-                    <h3 class="success-title">Solicitud recibida</h3>
-                    <p class="success-text">Agradecemos tu interés. Te contactaremos con la discreción que este viaje
-                        merece.</p>
+                    <h3 class="success-title">SOLICITUD RECIBIDA</h3>
+                    <p class="success-text">Gracias por dar este paso.<br>En breve recibirás el dossier completo y la
+                        información para continuar el proceso.</p>
                 </div>
             </div>
         </div>

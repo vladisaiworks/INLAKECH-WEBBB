@@ -128,4 +128,15 @@ Si la respuesta es no:
 
 ---
 
+## 8. Gestión Técnica del Proyecto (WORKFLOW CRÍTICO)
+
+**REGLA DE ORO:**
+- **Desarrollo:** SIEMPRE se trabaja sobre `index2.html`. Este es el archivo maestro de desarrollo.
+- **Producción:** `index.html` es una copia exacta de `index2.html` generada EXCLUSIVAMENTE para el despliegue en GitHub Pages.
+- **Nunca editar `index.html` manualmente.** Cualquier cambio debe hacerse en `index2.html` y luego replicarse automáticamente al desplegar.
+
+Esta estructura asegura que las rutas relativas funcionen tanto en el entorno local (donde se prefiere evitar la raíz del servidor) como en el repositorio público.
+
+---
+
 ## Fin del documento

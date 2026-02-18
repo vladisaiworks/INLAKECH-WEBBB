@@ -1,0 +1,18 @@
+/* --- HERO IMAGE OPTIMIZATION (Mobile Specific) --- */
+@media (max-width: 767px) {
+    .hero-bg-img {
+        /* "Make it smaller" interpretation: Zoom out slightly by allowing height to not be 100% forced if possible? 
+           No, keep cover but shift position to show "Sun and Castle" better */
+        object-position: 65% 50% !important;
+        /* Shifted horizontally to likely center the castle if it's offset, 
+           or use 'center center' explicitly */
+        transform: scale(1.1);
+        /* Slight zoom to allow moving without edges? No. */
+    }
+
+    /* Refined Attempt: "See Sun and Castle" usually implies seeing the TOP part */
+    .hero-bg-img {
+        object-position: 50% 20% !important;
+        /* Focus usually on top-center for monuments */
+    }
+}

@@ -177,20 +177,20 @@ Cada una cumple una función esencial dentro del mismo ecosistema.
 **SEMBRADOR PATRIMONIAL**
 **QUIEN ASEGURA LA RAÍZ**
 
-Adquiere derechos de tierra y aporta los recursos que anclan la base patrimonial del proyecto.
-Está desde el inicio, asegurando territorio y confianza a largo plazo.
+Adquiere derechos de tierra y aporta capital fundacional.
+Su inversión consolida territorio y fortalece la base patrimonial sobre la que crecerá el proyecto.
 
-**FUNDADOR CIMENTACIÓN**
+**FUNDADOR DE CIMENTACIÓN**
 **QUIEN CONVIERTE LA VISIÓN EN ESTRUCTURA**
 
-Activa la fase de cimentación y pone en marcha la infraestructura.
-Hace posible el inicio del hospedaje como experiencia viva dentro del ecosistema.
+Adquiere derechos de tierra y activa la construcción del ecosistema.
+Su aportación impulsa la infraestructura y pone en marcha el modelo de hospedaje y servicios.
 
 **ARTÍFICE DE ANCLAJE**
 **QUIEN DA VIDA AL ECOSISTEMA**
 
-Aporta servicios de alto valor al proyecto.
-Talento, conocimiento y operación que hacen florecer la comunidad y consolidan el ecosistema.
+Aporta servicios, talento u operación con anclaje real.
+Integra su conocimiento al territorio, transformando la infraestructura en experiencia viva.
 
 ---
 
@@ -228,6 +228,15 @@ Cerrar el viaje e invitar a una decisión consciente, sin presión.
 
 **Footer**
 **In Lak’ech Eco-Aldea Cooperativa de Servicios, Productos y Rentas Turísticas — Todos los derechos reservados.**
+
+---
+
+### MENSAJE POST-SOLICITUD (MODAL)
+
+**SOLICITUD RECIBIDA**
+
+Gracias por dar este paso.
+En breve recibirás el dossier completo y la información para continuar el proceso.
 
 ---
 

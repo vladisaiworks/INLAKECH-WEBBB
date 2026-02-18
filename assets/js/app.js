@@ -553,14 +553,19 @@ function initMobileCarousel() {
 
     // --- TOUCH HANDLING ---
     let touchStartX = 0;
+    let touchStartY = 0; // Added for Y tracking
     let touchActive = false;
     let dragOffset = 0;
+    let directionLocked = null; // 'x' or 'y'
 
     container.addEventListener('touchstart', function (e) {
         stopAutoPlay();
         touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY; // Capture Y
         touchActive = true;
         dragOffset = 0;
+        directionLocked = null; // Reset lock
+
         // Kill any running transition immediately
         const computedStyle = window.getComputedStyle(track);
         const matrix = new DOMMatrix(computedStyle.transform);
@@ -575,7 +580,28 @@ function initMobileCarousel() {
 
     container.addEventListener('touchmove', function (e) {
         if (!touchActive) return;
-        dragOffset = e.touches[0].clientX - touchStartX;
+
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = currentX - touchStartX;
+        const diffY = currentY - touchStartY;
+
+        // Axis Locking Logic
+        if (directionLocked === 'y') return; // Ignore if vertical scroll detected
+
+        if (!directionLocked) {
+            if (Math.abs(diffY) > Math.abs(diffX)) {
+                directionLocked = 'y'; // Lock to vertical
+                return;
+            } else if (Math.abs(diffX) > 5) {
+                directionLocked = 'x'; // Lock to horizontal
+            } else {
+                return; // Wait for clear intent
+            }
+        }
+
+        // Only proceed if locked to X
+        dragOffset = currentX - touchStartX;
         const base = -getSlideWidth() * current;
         track.style.transform = 'translateX(' + (base + dragOffset) + 'px)';
     }, { passive: true });
