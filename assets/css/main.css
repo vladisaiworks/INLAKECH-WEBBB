@@ -2381,8 +2381,7 @@ main>section {
     left: 0;
     width: 100%;
     z-index: 1000;
-    will-change: transform, opacity;
-    /* FLICKER FIX */
+    /* REMOVED will-change: transform — it breaks backdrop-filter on #top-bar (known CSS bug) */
     backface-visibility: hidden;
     /* FLICKER FIX */
 }

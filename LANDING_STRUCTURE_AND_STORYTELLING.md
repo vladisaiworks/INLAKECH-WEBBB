@@ -73,14 +73,14 @@ Hablar al corazón sin perder madurez ni rigor.
 
 **Storytelling**
 
-## El mundo ha cambiado, la forma de proteger tu legado también.
+## EL MUNDO HA CAMBIADO.
+## LA FORMA DE PROTEGER TU LEGADO TAMBIÉN.
 
-In Lak’ech nace como una respuesta consciente a un modelo de crecimiento que ha perdido el equilibrio entre progreso, tierra y vida humana. Es la visión de una eco-aldea diseñada para volver a habitar desde la cooperación, el respeto por los ciclos naturales y una relación sana entre bienestar y prosperidad.
+Habita desde el equilibrio, la cooperación y el respeto por los ciclos naturales. Regenera la tierra y demuestra que es posible construir valor económico comunitario sin renunciar a la armonía, la belleza y la vida saludable.
 
-Nuestro propósito es crear un asentamiento colectivo donde la regeneración del territorio, la fortaleza de la comunidad y la solidez económica se refuercen mutuamente. Un lugar donde el valor no se extrae, se cultiva.
+Donde el bienestar común y el individual se refuerzan mutuamente.
 
-Donde tu patrimonio no solo se protege,
-se siembra para las próximas generaciones.
+PROTEGE TU PATRIMONIO Y SIEMBRA PARA LAS PRÓXIMAS GENERACIONES
 
 ---
 
@@ -111,6 +111,20 @@ centros arqueológicos.
 
 ---
 
+### SECCIÓN 3.5 — GALERÍA CULTURAL / LA TIERRA QUE NOS RODEA
+
+**Propósito de la sección**
+Mostrar visualmente las maravillas naturales y arqueológicas del entorno.
+Reforzar la idea de que la ubicación no solo es estratégica, sino profundamente rica en cultura y naturaleza.
+
+**Storytelling**
+
+## La tierra que nos rodea
+
+*(Carrusel visual con imágenes representativas del estado de Yucatán y sus maravillas como Celestún, Chichén Itzá, Tulum, etc.).*
+
+---
+
 ### SECCIÓN 4 — EL QUÉ / MASTER PLAN Y ECOALDEA
 
 **Propósito de la sección**
@@ -125,13 +139,13 @@ Transmitir orden, coherencia y visión de conjunto sin entrar en detalle técnic
 
 ---
 
-### 01 · Plusvalía Ecológica
-La selva permanece intacta como valor esencial, creando una escasez natural que protege el territorio y eleva su valor con el paso del tiempo.
+### 01 · PLUSVALÍA ECOLÓGICA
+Preservar la selva al construir como valor esencial, protege el territorio y eleva su valor con el paso del tiempo.
 
 ---
 
-### 02 · Autonomía Viva
-Sistemas propios de agua y energía permiten que el proyecto funcione con resiliencia, reduciendo dependencias y asegurando su continuidad a largo plazo.
+### 02 · AUTONOMÍA VIVA
+Agua, energía, y alimentos propios permiten funcionar con resiliencia, reduciendo dependencias y asegurando continuidad a largo plazo.
 
 ---
 
@@ -175,16 +189,16 @@ aquí se construye.
 Cada una cumple una función esencial dentro del mismo ecosistema.
 
 **SEMBRADOR PATRIMONIAL**
-**QUIEN ASEGURA LA RAÍZ**
+**QUIEN ASEGURA LA RAIZ**
 
-Adquiere derechos de tierra y aporta capital fundacional.
-Su inversión consolida territorio y fortalece la base patrimonial sobre la que crecerá el proyecto.
+Adquiere derechos de tierra y puede reunir los recursos para dar el siguiente paso.
+Su participación consolida el capital inicial necesario para impulsar el proyecto.
 
 **FUNDADOR DE CIMENTACIÓN**
-**QUIEN CONVIERTE LA VISIÓN EN ESTRUCTURA**
+**QUIEN ACTIVA LA INFRAESTRUCTURA**
 
 Adquiere derechos de tierra y activa la construcción del ecosistema.
-Su aportación impulsa la infraestructura y pone en marcha el modelo de hospedaje y servicios.
+Materializa los primeros espacios que ponen en marcha el modelo turístico y cooperativo.
 
 **ARTÍFICE DE ANCLAJE**
 **QUIEN DA VIDA AL ECOSISTEMA**
@@ -208,7 +222,7 @@ personas capaces de sostenerla en el tiempo.
 **Ismael — Estratega y CEO**
 Custodia la coherencia del proyecto y su desarrollo a largo plazo.
 
-**Yuman — Arquitecto del Territorio**
+**Carlos — Arquitecto del Territorio**
 Traduce la visión en forma habitable y dialogante con la tierra.
 
 **PRIMEROS FUNDADORES**
@@ -226,8 +240,19 @@ Modelo basado en transparencia, responsabilidad compartida y equilibrio de poder
 **Propósito de la sección**
 Cerrar el viaje e invitar a una decisión consciente, sin presión.
 
+**Storytelling**
+
+## Todo viaje consciente comienza con una decisión.
+
+Si este proyecto ha resonado contigo, te invitamos a conocer la visión completa y los próximos pasos.
+
+**CTA:**
+Solicitar Dossier
+
+---
+
 **Footer**
-**In Lak’ech Eco-Aldea Cooperativa de Servicios, Productos y Rentas Turísticas — Todos los derechos reservados.**
+© In Lak’ech Eco-Aldea Cooperativa de Servicios, Productos y Rentas Turísticas — Todos los derechos reservados.
 
 ---
 

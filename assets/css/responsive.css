@@ -924,9 +924,8 @@ p,
 
     /* 3. SCROLLED STATE */
     #header-wrap.is-scrolled #top-bar {
-        /* Dark Background on scroll */
+        /* Dark translucent background on scroll */
         background: rgba(11, 12, 11, 0.9) !important;
-        /* Slightly darker */
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
